@@ -52,9 +52,9 @@ A normal Fluree insert transaction consists of 3 parts:
 
 3.  **Insert**: This keyword specifies what you wish to achieve with this transaction. Each entity you insert should be placed after "insert": in between a set of curly brackets {}. If you are adding more than one entity you simply add another set of curly brackets and place a comma after the previous entity. 
 
-    - Each entity/node requires an "@id" which can uniquely identify it in this particular ledger. Because there is no other Bob in this entity we use the "@id": "Bob", Bob is not found in the example.org vocabulary, thus he does not use the prefix "ex:".
+    - Each entity/node requires an "@id" which can uniquely identify it in this particular ledger. Because there is no other Bob in this entity we simply use the "@id": "Bob", Bob is not found in the example.org vocabulary, thus he does not use the prefix "ex:".
 
-    - We can give each entity properties for example, name, age, marital status, employment status etc. The example.org vocabulary has a property for age, name and worksWith and a class for Farmer. We can assign these properties to Bob. 
+    - We can give each entity properties for example, name, age, marital status, employment status etc. Provided the example.org vocabulary has a property for age, name and worksWith and also a class for Farmer. We can assign these properties to Bob. 
 
 
 ## RDF vocabulary examples in JSON-LD:
@@ -70,10 +70,22 @@ A normal Fluree insert transaction consists of 3 parts:
 #### RDF Class
 ![rdf_Class](https://github.com/aartum/FlureeImplementationAIAO/assets/143713572/20d692c7-8731-42ab-bb3e-a6d5031657fb)
 
-- The snippet above assumes there is an entity in the example vocabulary "ex:Location", this entity is declared as "rdfs:Class".
+- The snippet above assumes there is an entity in the example vocabulary "ex: Location", this entity is declared as "rdfs:Class".
 
 #### RDF Subclass
 ![rdf_SubClass](https://github.com/aartum/FlureeImplementationAIAO/assets/143713572/fc1c56bf-0359-45b7-9687-67d7fdf8d7c1)
 
-- The snippet above assumes Country is also an entity of example.org, we want to assign a relationship which states it is a subclass of Location in our dataset. Please look at how the syntax and declaration for the "rdfs" subclass work in the example above. 
+- The snippet above assumes Country is also an entity of example.org, we want to assign a relationship which states it is a subclass of Location in our dataset. Please take a look at how the syntax and declaration for the "rdfs" subclass works in the example above. 
 
+#### Inserting data using the Classes:
+![class_dataInsert](https://github.com/aartum/FlureeImplementationAIAO/assets/143713572/57315fd9-efdc-486f-9e37-888187678cda)
+
+- We can simply now add "South-Africa" as an entity which is of type "ex:Country" and then by the rules we provided is a subclass of "ex:Location".
+
+### Exporting a Postman request
+It is certainly possible to convert Postman's requests to other formats such as curl, R (using httr), Python, C# etc. 
+- This is achieved by clicking on the request and on the right-hand side of the Postman application is a "</>" icon. Click this and on the top left of the newly opened screen is a drop-down list of the various formats Postman can convert a request to:
+
+![Postman_export](https://github.com/aartum/FlureeImplementationAIAO/assets/143713572/3f4706e4-b594-4bba-a309-13a18b00139f)
+
+- Simply copy and paste the converted request where needed.
