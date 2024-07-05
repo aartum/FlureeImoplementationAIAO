@@ -19,7 +19,12 @@ This document serves as an all in one guide to continue/get started with or repl
     - To stop the container from running use the command **docker stop** followed by either the "--name" specified in the "run" command above or the container ID which can be found by running the “docker ps” command. Alternatively the Docker Desktop interface can be used to run/stop containers or manually pull images from Docker Hub.
 
 [A useful intro video on Docker can be found [here](https://www.youtube.com/watch?v=pg19Z8LL06w)]
-      
+
+## The AIA ontology in Postman
+I highly recommend using the aia ontology "cookbook" it provides easy copy and paste transactions to get started where we ended. It also provides a bunch of examples how to insert the data, and provides a more complete guide on JSON-LD and the Fluree transactions over all. 
+
+The aia ontology cookbook can be found [here](https://documenter.getpostman.com/view/36457813/2sA3dyiBBW).
+
 ## Using Postman to Conduct HTTP Requests
 ![Postman Icon](https://blog.postman.com/wp-content/uploads/2014/07/logo.png)
 
@@ -92,5 +97,4 @@ It is certainly possible to convert Postman's requests to other formats such as 
 
 - Simply copy and paste the converted request where needed.
 
-## The AIA ontology in Postman
-The aia ontology cookbook can be found [here](https://documenter.getpostman.com/view/36457813/2sA3dyiBBW).
+
