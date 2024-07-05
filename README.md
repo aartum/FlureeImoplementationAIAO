@@ -15,16 +15,7 @@ This document serves as an all-in-one guide to continue/get started with or repl
 </pre>
 <button onclick="copyToClipboard()">Copy</button>
 
-<script>
-function copyToClipboard() {
-    const code = document.getElementById('docker-command').textContent;
-    navigator.clipboard.writeText(code).then(() => {
-        alert('Command copied to clipboard!');
-    }).catch(err => {
-        console.error('Failed to copy: ', err);
-    });
-}
-</script>
+
 
 - The “-d” command is used to run the docker container in the background ("detached mode") so that the terminal window can still be used to send more prompts.
 - The “-p” command specifies the port the server will use locally.
