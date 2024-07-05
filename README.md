@@ -6,17 +6,34 @@ This document serves as an all-in-one guide to continue/get started with or repl
 ![Docker Icon](https://www.docker.com/wp-content/uploads/2023/08/logo-guide-logos-1.svg)
 
 ### To create a Fluree Server image from Docker:
--  Ensure you have **Docker** installed.
--  Open a Command Line Interface(CLI) such as Command Prompt (Windows) or Terminal (Mac)
--  Adjust and run the following command:
-- **docker run -d -p 58090:8090 --name fluree_server3 fluree/server**
-    -  The “-d” command is used to run the docker container in the background ("detached mode") so that the terminal window can still be used to send more prompts.
-    -  The “-p” command specifies the port the server will use locally.
-    -  The text following “–name” is the name of the Docker container pulled from the Fluree server image. This can be changed depending on the user’ preference. If not specified, docker will automatically assign a unique name to the container.
-    -  Docker will automatically pull the latest version of the fluree/server image and run it if it is not found on your local device.
-    -  In your CLI you can type **docker ps** which should show the running fluree/server container.
-    - You can now send HTTP requests to the local URL which has been created using port 58090, or another port depending on which one you specified. To view the HTTP API endpoint page visit https://localhost:58090.
-    - To stop the container from running use the command **docker stop** followed by either the "--name" specified in the "run" command above or the container ID which can be found by running the “docker ps” command. Alternatively, the Docker Desktop interface can be used to run/stop containers or manually pull images from Docker Hub.
+- Ensure you have **Docker** installed.
+- Open a Command Line Interface (CLI) such as Command Prompt (Windows) or Terminal (Mac).
+- Adjust and run the following command:
+
+<pre>
+<code id="docker-command">docker run -d -p 58090:8090 --name fluree_server3 fluree/server</code>
+</pre>
+<button onclick="copyToClipboard()">Copy</button>
+
+<script>
+function copyToClipboard() {
+    const code = document.getElementById('docker-command').textContent;
+    navigator.clipboard.writeText(code).then(() => {
+        alert('Command copied to clipboard!');
+    }).catch(err => {
+        console.error('Failed to copy: ', err);
+    });
+}
+</script>
+
+- The “-d” command is used to run the docker container in the background ("detached mode") so that the terminal window can still be used to send more prompts.
+- The “-p” command specifies the port the server will use locally.
+- The text following “–name” is the name of the Docker container pulled from the Fluree server image. This can be changed depending on the user’s preference. If not specified, Docker will automatically assign a unique name to the container.
+- Docker will automatically pull the latest version of the fluree/server image and run it if it is not found on your local device.
+- In your CLI, you can type **docker ps** which should show the running fluree/server container.
+- You can now send HTTP requests to the local URL which has been created using port 58090, or another port depending on which one you specified. To view the HTTP API endpoint page, visit [https://localhost:58090](https://localhost:58090).
+- To stop the container from running, use the command **docker stop** followed by either the "--name" specified in the "run" command above or the container ID, which can be found by running the “docker ps” command. Alternatively, the Docker Desktop interface can be used to run/stop containers or manually pull images from Docker Hub.
+
 
 [A useful intro video on Docker can be found [here](https://www.youtube.com/watch?v=pg19Z8LL06w)]
 
