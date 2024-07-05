@@ -16,7 +16,6 @@ This document serves as an all-in-one guide to continue/get started with or repl
 <button onclick="copyToClipboard()">Copy</button>
 
 
-
 - The “-d” command is used to run the docker container in the background ("detached mode") so that the terminal window can still be used to send more prompts.
 - The “-p” command specifies the port the server will use locally.
 - The text following “–name” is the name of the Docker container pulled from the Fluree server image. This can be changed depending on the user’s preference. If not specified, Docker will automatically assign a unique name to the container.
@@ -24,8 +23,9 @@ This document serves as an all-in-one guide to continue/get started with or repl
 - In your CLI, you can type **docker ps** which should show the running fluree/server container.
 - You can now send HTTP requests to the local URL which has been created using port 58090, or another port depending on which one you specified. To view the HTTP API endpoint page, visit [https://localhost:58090](https://localhost:58090).
 - To stop the container from running, use the command **docker stop** followed by either the "--name" specified in the "run" command above or the container ID, which can be found by running the “docker ps” command. Alternatively, the Docker Desktop interface can be used to run/stop containers or manually pull images from Docker Hub.
-
-
+<pre>
+<code id="docker-command">docker ps</code>
+</pre>
 [A useful intro video on Docker can be found [here](https://www.youtube.com/watch?v=pg19Z8LL06w)]
 
 ## The AIA ontology in Postman
@@ -51,27 +51,6 @@ I recommend going through Fluree's cookbook example and Forking their Postman co
 - After typing the body you can simply hit the send button.
 
 ### How a simple transaction might look like (Postman + JSON-LD):
-<pre>
-<code id="docker-command">{
-    "@context": {
-        "ex": "http://example.org/",
-        "rdfs": "http://www.w3.org/2000/01/rdf-schema#"
-    },
-    "ledger": "ex_ontology",
-    "insert": [
-        {
-            "@id": "Bob",
-	     “@ex:name”: “Bob”
-            "@type": "ex:Farmer",
-            "rdfs:comment": "Bob the Farmer",
-            "ex:worksWith": {"@id" : "Tom"},
-            "ex:age" : 53
-        }
-    ]
-}
-</code>
-</pre>
-<button onclick="copyToClipboard()">Copy</button>
 
 ![json_ex](https://github.com/aartum/FlureeImplementationAIAO/assets/143713572/e4a8febe-3ca8-4164-83c0-9a6f44cf0d12)
 
