@@ -1,7 +1,7 @@
-# All in One Documentation
+# All-in-One Documentation
 
 ## Notes:
-This document serves as an all in one guide to continue/get started with or replicate the work done by the Nova interns in June/July of 2024.
+This document serves as an all-in-one guide to continue/get started with or replicate the work done by the Nova interns in June/July of 2024.
 ## Fluree Server Image from Docker:
 ![Docker Icon](https://www.docker.com/wp-content/uploads/2023/08/logo-guide-logos-1.svg)
 
@@ -16,12 +16,12 @@ This document serves as an all in one guide to continue/get started with or repl
     -  Docker will automatically pull the latest version of the fluree/server image and run it if it is not found on your local device.
     -  In your CLI you can type **docker ps** which should show the running fluree/server container.
     - You can now send HTTP requests to the local URL which has been created using port 58090, or another port depending on which one you specified. To view the HTTP API endpoint page visit https://localhost:58090.
-    - To stop the container from running use the command **docker stop** followed by either the "--name" specified in the "run" command above or the container ID which can be found by running the “docker ps” command. Alternatively the Docker Desktop interface can be used to run/stop containers or manually pull images from Docker Hub.
+    - To stop the container from running use the command **docker stop** followed by either the "--name" specified in the "run" command above or the container ID which can be found by running the “docker ps” command. Alternatively, the Docker Desktop interface can be used to run/stop containers or manually pull images from Docker Hub.
 
 [A useful intro video on Docker can be found [here](https://www.youtube.com/watch?v=pg19Z8LL06w)]
 
 ## The AIA ontology in Postman
-I highly recommend using the aia ontology "cookbook" it provides easy copy and paste transactions to get started where we ended. It also provides a bunch of examples how to insert the data, and provides a more complete guide on JSON-LD and the Fluree transactions over all. 
+I highly recommend going through the aia "cookbook", it is a thorough and complete overview of how to use Fluree and Postman together and also provides all the needed transactions to add the aia ontology to a Fluree Ledger. The cookbook also provides curl transactions for users who are using the Terminal. 
 
 The aia ontology cookbook can be found [here](https://documenter.getpostman.com/view/36457813/2sA3dyiBBW).
 
