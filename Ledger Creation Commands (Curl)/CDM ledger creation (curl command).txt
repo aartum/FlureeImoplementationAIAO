@@ -1,0 +1,1065 @@
+curl --location 'http://localhost:58090/fluree/create' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "@context": {
+        "cdm": "http://purl.org/aiaontology/cdmvocabulary#",
+        "aia": "http://purl.org/aiaontology#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "xml": "http://www.w3.org/XML/1998/namespace",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "skos": "http://www.w3.org/2004/02/skos/core#"
+        
+    },
+    "ledger": "cdm/base",
+    "insert": [
+        {
+            "@id": "http://purl.org/aiaontology/cdmvocabulary",
+            "@type": "owl:Ontology"
+        },
+
+
+
+
+        
+        
+        
+        {
+            "@id": "aia:hasParameter",
+            "@type": "owl:ObjectProperty",
+            "rdfs:domain": {
+                "@id": "aia:Procedure"
+            },
+            "rdfs:range": {
+                "@id": "aia:State"
+            }
+        },
+        {
+            "@id": "cdm:conditionFor",
+            "@type": "owl:ObjectProperty",
+            "owl:inverseOf": {
+                "@id": "cdm:hasConditions"
+            },
+            "rdfs:domain": {
+                "@id": "aia:Condition"
+            },
+            "rdfs:range": {
+                "@id": "aia:Procedure"
+            }
+        },
+        {
+            "@id": "cdm:hasConditions",
+            "@type": "owl:ObjectProperty",
+            "rdfs:domain": {
+                "@id": "aia:Procedure"
+            },
+            "rdfs:range": {
+                "@id": "aia:Condition"
+            }
+        },
+        {
+            "@id": ":hasProjectBoundary",
+            "@type": "owl:ObjectProperty",
+            "rdfs:domain": {
+                "@id": "aia:Activity"
+            },
+            "rdfs:range": {
+                "@id": "cdm:ProjectBoundary"
+            }
+        },
+        {
+            "@id": "cdm:hasSectoralScope",
+            "@type": "owl:ObjectProperty",
+            "rdfs:domain": {
+                "@id": "aia:Activity"
+            },
+            "rdfs:range": {
+                "@id": "cdm:SectoralScope"
+            }
+        },
+        {
+            "@id": "cdm:monitoredParameter",
+            "@type": "owl:ObjectProperty",
+            "rdfs:subPropertyOf": {
+                "@id": "aia:hasParameter"
+            }
+        },
+        {
+            "@id": "cdm:toolUsedIn",
+            "@type": "owl:ObjectProperty",
+            "owl:inverseOf": {
+                "@id": "cdm:usesTool"
+            },
+            "rdfs:domain": {
+                "@id": "cdm:MethodologicalTool"
+            },
+            "rdfs:range": {
+                "@id": "aia:Activity"
+            }
+        },
+        {
+            "@id": "cdm:usesTool",
+            "@type": "owl:ObjectProperty",
+            "rdfs:domain": {
+                "@id": "aia:Activity"
+            },
+            "rdfs:range": {
+                "@id": "cdm:MethodologicalTool"
+            }
+        },
+        {
+            "@id": "cdm:validationParameter",
+            "@type": "owl:ObjectProperty",
+            "rdfs:subPropertyOf": {
+                "@id": "aia:hasParameter"
+            }
+        },
+
+
+
+
+        
+        
+        
+        {
+            "@id": "cdm:calculatedExAnte",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": [
+                {
+                    "@id": "aia:State"
+                },
+                {
+                    "@id": "cdm:EmissionFactor"
+                }
+            ],
+            "rdfs:range": {
+                "@id": "xsd:boolean"
+            },
+            "rdfs:comment": {
+                "@value": "If true, the emission factor is calculated ex ante (i.e. before theimplementation of the project). If false, the emission factor is calculated ex post.",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "cdm:hasBaselineScenario",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "aia:Procedure"
+            },
+            "rdfs:range": {
+                "@id": "xsd:string"
+            },
+            "owl:propertyDisjointWith": {
+                "@id": "cdm:hasProjectScenario"
+            },
+            "skos:related": {
+                "@id": "aia:State"
+            }
+        },
+        {
+            "@id": "cdm:hasEmissionMitigationType",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "aia:Procedure"
+            },
+            "rdfs:range": {
+                "@id": "xsd:string"
+            },
+            "rdfs:comment": {
+                "@value": "FIX: maybe change to object property later",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "cdm:hasProjectScenario",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "aia:Procedure"
+            },
+            "rdfs:range": {
+                "@id": "xsd:string"
+            },
+            "skos:related": {
+                "@id": "aia:State"
+            }
+        },
+        {
+            "@id": "cdm:hasScale",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": [
+                {
+                    "@id": "aia:Activity"
+                },
+                {
+                    "@id": "aia:Procedure"
+                }
+            ],
+            "rdfs:range": {
+                "@id": "xsd:string"
+            }
+        },
+        {
+            "@id": "cdm:hasTypicalProjects",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "aia:Procedure"
+            },
+            "rdfs:range": {
+                "@id": "xsd:string"
+            }
+        },
+        {
+            "@id": "cdm:hasVersion",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": [
+                {
+                    "@id": "aia:Procedure"
+                },
+                {
+                    "@id": "cdm:MethodologicalTool"
+                }
+            ],
+            "rdfs:range": {
+                "@id": "xsd:string"
+            }
+        },
+        {
+            "@id": "cdm:typeOfMitigationAction",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "aia:Procedure"
+            },
+            "rdfs:range": {
+                "@id": "xsd:string"
+            },
+            "rdfs:label": {
+                "@value": "Type of GHG emissions mitigation action",
+                "@language": "en"
+            }
+        },
+
+
+
+
+        
+        
+        
+        {
+            "@id": "aia:Activity",
+            "@type": "owl:Class"
+        },
+        {
+            "@id": "aia:Agent",
+            "@type": "owl:Class"
+        },
+        {
+            "@id": "aia:Calculation",
+            "@type": "owl:Class"
+        },
+        {
+            "@id": "aia:Condition",
+            "@type": "owl:Class"
+        },
+        {
+            "@id": "aia:Environment",
+            "@type": "owl:Class"
+        },
+        {
+            "@id": "aia:Output",
+            "@type": "owl:Class"
+        },
+        {
+            "@id": "aia:Procedure",
+            "@type": "owl:Class"
+        },
+        {
+            "@id": "aia:Resource",
+            "@type": "owl:Class"
+        },
+        {
+            "@id": "aia:State",
+            "@type": "owl:Class"
+        },
+        {
+            "@id": "cdm:Additional",
+            "@type": "owl:Class",
+            "rdfs:subClassOf": {
+                "@id": "aia:Output"
+            },
+            "rdfs:comment": {
+                "@value": "For a CDM project activity (non-A/R) or CPA (non-A/R), the effect of the CDM project activity or CPA to reduce anthropogenic GHG emissions below the level that would have occurred in the absence of the CDM project activity or CPA; or For an A/R or SSC CPA (A/R), the effect of the A/R or SSC A/R CDM project activity or CPA (A/R) to increase actual net GHG removals by sinks above the sum of the changes in carbon stocks in the carbon pools within the project boundary that would have occurred in the absence of the A/R or SSC CPA (A/R). Whether or not a CDM project activity or CPA is additional is determined in accordance with the CDM rules and requirements.",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "cdm:Afforestation",
+            "@type": "owl:Class",
+            "rdfs:subClassOf": {
+                "@id": "aia:Activity"
+            },
+            "rdfs:comment": {
+                "@value": "The direct human-induced conversion of land that has not been forested for a period of at least 50 years to forested land through planting, seeding and/or the human-induced promotion of natural seed sources.",
+                "@language": "en"
+            },
+            "skos:broader": {
+                "@id": "aia:Activity"
+            }
+        },
+        {
+            "@id": "cdm:Agroforestry",
+            "@type": "owl:Class",
+            "rdfs:subClassOf": {
+                "@id": "aia:Activity"
+            },
+            "rdfs:comment": {
+                "@value": "Growing of both trees and agricultural / horticultural crops on the same piece of land.",
+                "@language": "en"
+            },
+            "skos:broader": {
+                "@id": "aia:Activity"
+            }
+        },
+        {
+            "@id": "cdm:AllometricBiomassEquations",
+            "@type": "owl:Class",
+            "rdfs:subClassOf": {
+                "@id": "aia:Calculation"
+            },
+            "rdfs:comment": {
+                "@value": "Regression equations calculating biomass based on measured parameters of a tree (or shrub), for example, quantifying the relationship between above-ground tree biomass and the diameter at breast height and tree height of a specific tree species.",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "cdm:AnnexIParty",
+            "@type": "owl:Class",
+            "rdfs:subClassOf": {
+                "@id": "aia:Agent"
+            },
+            "rdfs:comment": {
+                "@value": "A Party that is included in Annex I to the Convention or a Party that has made a notification under Article 4, paragraph 2(g) of the Convention.",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "cdm:ApprovedMethodology",
+            "@type": "owl:Class",
+            "rdfs:subClassOf": {
+                "@id": "aia:Procedure"
+            },
+            "rdfs:comment": {
+                "@value": "A methodology that has been approved by the Board for application to CDM project activities or CPAs. Approved methodologies are publicly available on the UNFCCC CDM website.",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "cdm:BaselineScenario",
+            "@type": "owl:Class",
+            "rdfs:subClassOf": {
+                "@id": "aia:State"
+            },
+            "rdfs:comment": {
+                "@value": "For a CDM project activity (non-A/R) or CPA (non-A/R), the scenario for a CDM project activity or CPA that reasonably represents the anthropogenic emissions by sources of GHG that would occur in the absence of the proposed CDM project activity or CPA. For an A/R or SSC A/R CDM project activity or CPA (A/R), the scenario for an A/R or SSC A/R CDM project activity or CPA (A/R) that reasonably represents the sum of the changes in carbon stocks in the carbon pools within the project boundary that would occur in the absence of the A/R or SSC A/R CDM project activity or CPA (A/R).",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "cdm:Biomass",
+            "@type": "owl:Class",
+            "rdfs:comment": {
+                "@value": "Non-fossilized and biodegradable organic material originating from plants,animals and micro-organisms, including: (a) Biomass residue; (b) The non-fossilized and biodegradable organic fractions of industrial and municipal wastes; and (c) The gases and liquids recovered from the decomposition of non-fossilized and biodegradable organic material.",
+                "@language": "en"
+            },
+            "skos:related": {
+                "@id": "aia:Environment"
+            }
+        },
+        {
+            "@id": "cdm:BiomassExpansionFactor",
+            "@type": "owl:Class",
+            "rdfs:comment": {
+                "@value": "Ratio of total stand biomass to stand (merchantable) volume (e.g. as derived from forest yield tables).",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "cdm:Byproduct",
+            "@type": "owl:Class",
+            "rdfs:comment": {
+                "@value": "A product that is produced along with the main product which has smaller revenues than the main product.",
+                "@language": "en"
+            },
+            "skos:broader": {
+                "@id": "aia:Output"
+            }
+        },
+        {
+            "@id": "cdm:CPA",
+            "@type": "owl:Class",
+            "rdfs:subClassOf": {
+                "@id": "aia:Activity"
+            },
+            "rdfs:comment": {
+                "@value": "CDM Project Activity",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "cdm:CaptiveGeneration",
+            "@type": "owl:Class",
+            "rdfs:subClassOf": {
+                "@id": "aia:Activity"
+            },
+            "rdfs:comment": {
+                "@value": "Electricity generation in a power plant that supplies electricity only to consumer(s) and not to the electricity grid. The consumer(s) are either located directly at the site of the power plant or are connected through dedicated electricity distribution line(s) with the power plant but not via the electricity grid.",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "cdm:CarbonSequestration",
+            "@type": "owl:Class",
+            "rdfs:subClassOf": {
+                "@id": "aia:Activity"
+            },
+            "rdfs:comment": {
+                "@value": "Carbon sequestration is defined as a biological, chemical or physical process of removing carbon from the atmosphere and depositing it in a reservoir.",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "cdm:Cogeneration",
+            "@type": "owl:Class",
+            "rdfs:subClassOf": {
+                "@id": "aia:Activity"
+            },
+            "rdfs:comment": {
+                "@value": "Simultaneous production of electricity and useful thermal energy in one process.",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "cdm:EmissionFactor",
+            "@type": "owl:Class",
+            "rdfs:comment": {
+                "@value": "Measure of the average amount of GHG emitted to the atmosphere by a specific process, fuel, equipment, or source.",
+                "@language": "en"
+            },
+            "skos:related": {
+                "@id": "aia:State"
+            }
+        },
+        {
+            "@id": "cdm:EnergyEfficiency",
+            "@type": "owl:Class",
+            "rdfs:comment": {
+                "@value": "Energy efficiency is defined as the improvement in the service provided per unit power, for example, project activities which increase unit output of traction, work, electricity, heat, light (or fuel) per MW input are energy efficiency project activities.",
+                "@language": "en"
+            },
+            "skos:narrower": {
+                "@id": "aia:Output"
+            }
+        },
+        {
+            "@id": "cdm:Forestry",
+            "@type": "owl:Class",
+            "rdfs:subClassOf": {
+                "@id": "aia:Activity"
+            }
+        },
+        {
+            "@id": "cdm:GHGInventorySector",
+            "@type": "owl:Class"
+        },
+        {
+            "@id": "cdm:GreenfieldFacility",
+            "@type": "owl:Class",
+            "rdfs:subClassOf": {
+                "@id": "aia:Activity"
+            },
+            "rdfs:comment": {
+                "@value": "The construction of a new facility at a location where previously no facility exists, for example, construction of new power plant at a site where previously no power generation activity exists.",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "cdm:GreenhouseGas",
+            "@type": "owl:Class",
+            "rdfs:comment": {
+                "@value": "A greenhouse gas listed in Annex A to the Kyoto Protocol, unless otherwise specified in a particular methodology.",
+                "@language": "en"
+            },
+            "skos:prefLabel": {
+                "@value": "GHG",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "cdm:Grid",
+            "@type": "owl:Class",
+            "rdfs:comment": {
+                "@value": "The spatial extent of the power plants that are physically connected through transmission and distribution lines to the project activity (e.g. the renewable power plant location or the consumers where electricity is being saved) and that can be dispatched without significant transmission constraints.",
+                "@language": "en"
+            },
+            "skos:related": {
+                "@id": "aia:Environment"
+            }
+        },
+        {
+            "@id": "cdm:Harvesting",
+            "@type": "owl:Class",
+            "rdfs:subClassOf": {
+                "@id": "aia:Activity"
+            },
+            "rdfs:comment": {
+                "@value": "Cutting and removal of trees from forests for timber or other uses. In sustainable forestry, harvesting is followed by planting or natural regeneration of the forest.",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "cdm:LULUCF",
+            "@type": "owl:Class",
+            "rdfs:subClassOf": {
+                "@id": "cdm:GHGInventorySector"
+            },
+            "owl:disjointUnionOf": {
+                "@list": [
+                    {
+                        "@id": "cdm:Forestry"
+                    },
+                    {
+                        "@id": "cdm:LandUse"
+                    },
+                    {
+                        "@id": "cdm:LandUseChange"
+                    }
+                ]
+            }
+        },
+        {
+            "@id": "cdm:LandUse",
+            "@type": "owl:Class"
+        },
+        {
+            "@id": "cdm:LandUseChange",
+            "@type": "owl:Class"
+        },
+        {
+            "@id": "cdm:Leakage",
+            "@type": "owl:Class",
+            "rdfs:comment": {
+                "@value": "For a CDM project activity (non-A/R) or PoA (non-A/R), the net change of anthropogenic emissions by sources of GHG which occurs outside the project boundary, and which is measurable and attributable to the CDM project activity or PoA, as applicable.\nFor an A/R or SSC A/R CDM project activity or PoA (A/R), the increase in GHG emissions by sources or decrease in carbon stock in carbon pools which occurs outside the boundary of an A/R or SSC A/R CDM project activity or PoA (A/R), as applicable, which is measurable and attributable to the A/R or SSC A/R CDM project activity or PoA (A/R), as applicable.",
+                "@language": "en"
+            },
+            "skos:related": {
+                "@id": "aia:Output"
+            }
+        },
+        {
+            "@id": "cdm:LowCarbonElectricity",
+            "@type": "owl:Class",
+            "rdfs:comment": {
+                "@value": "Electricity that is generated using a less-GHG-intensive fuel than in the baseline (for example, electricity generated using natural gas in the project is low carbon electricity, when coal is used in the baseline for electricity generation).",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "cdm:MeritOrder",
+            "@type": "owl:Class",
+            "rdfs:comment": {
+                "@value": "A way of ranking existing power plants in ascending order of their short-run marginal costs of electricity generation, so that those with the lowest marginal costs are the first ones to be brought on line to meet demand and the plants with the highest marginal costs are the last to be brought on line.",
+                "@language": "en"
+            },
+            "skos:related": {
+                "@id": "aia:Procedure"
+            }
+        },
+        {
+            "@id": "cdm:MethodologicalTool",
+            "@type": "owl:Class",
+            "rdfs:subClassOf": {
+                "@id": "aia:Procedure"
+            }
+        },
+        {
+            "@id": "cdm:ProjectBoundary",
+            "@type": "owl:Class",
+            "rdfs:comment": {
+                "@value": "For a CDM project activity (non-A/R) or CPA (non-A/R), the significant anthropogenic GHG emissions by sources under the control of the project participant that are reasonably attributable to the CDM project activity or CPA, as determined in accordance with the CDM rules and requirements.\nFor an A/R or SSC A/R CDM project activity or CPA (A/R), geographically delineates the A/R or SSC A/R CDM project activity or CPA (A/R) under the control of the project participant as determined in accordance with the CDM rules and requirements.",
+                "@language": "en"
+            },
+            "skos:related": {
+                "@id": "aia:Output"
+            }
+        },
+        {
+            "@id": "cdm:ProjectScenario",
+            "@type": "owl:Class",
+            "rdfs:subClassOf": {
+                "@id": "aia:State"
+            }
+        },
+        {
+            "@id": "cdm:Reforestation",
+            "@type": "owl:Class",
+            "rdfs:subClassOf": {
+                "@id": "aia:Activity"
+            },
+            "rdfs:comment": {
+                "@value": "The direct human-induced conversion of non-forested land to forested land through planting, seeding and/or the human-induced promotion of natural seed sources, on land that was forested but has been converted to nonforested land.",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "cdm:RenewableEnergy",
+            "@type": "owl:Class",
+            "rdfs:comment": {
+                "@value": "Energy that comes from solar, wind, rain, tides, geothermal heat and biological sources which are renewable (naturally replenished) in nature.",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "cdm:SectoralScope",
+            "@type": "owl:Class",
+            "rdfs:comment": {
+                "@value": "The category of GHG source sectors or groups of activities that apply to CDM project activities or PoAs. It is based on the sectors and source categories set out in Annex A to the Kyoto Protocol. A CDM project activity or PoA may fall within more than one sectoral scope.",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "cdm:SoilOrganicCarbon",
+            "@type": "owl:Class",
+            "rdfs:comment": {
+                "@value": "Organic carbon in mineral and organic soils (including peat) to a specified depth chosen by the country and applied consistently through the time series. Live fine roots (of less than the suggested diameter limit for below-ground biomass) are included with soil organic matter where they cannot be distinguished from it empirically.",
+                "@language": "en"
+            },
+            "skos:related": {
+                "@id": "aia:Environment"
+            }
+        },
+        {
+            "@id": "cdm:StandardisedBaseline",
+            "@type": "owl:Class",
+            "rdfs:subClassOf": {
+                "@id": "aia:State"
+            },
+            "rdfs:comment": {
+                "@value": "A baseline developed for a Party or a group of Parties, on a sub-national, national or group-of-countries basis rather than on a project basis, to facilitate the calculation of GHG emission reductions and removals by sinks and/or the determination of additionality for CDM project activities or PoAs, while providing assistance for assuring environmental integrity.",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "cdm:SuppressedDemand",
+            "@type": "owl:Class",
+            "rdfs:comment": {
+                "@value": "A scenario where future anthropogenic emissions by sources are projected to rise above current levels, due to the specific circumstances of the host Party.",
+                "@language": "en"
+            },
+            "skos:related": {
+                "@id": "aia:Output"
+            }
+        },
+        {
+            "@id": "cdm:Trigeneration",
+            "@type": "owl:Class",
+            "rdfs:subClassOf": {
+                "@id": "aia:Activity"
+            },
+            "rdfs:comment": {
+                "@value": "Simultaneous generation of electrical energy and thermal energy in the form of cooling and heating in one process.",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "cdm:WasteEnergy",
+            "@type": "owl:Class",
+            "rdfs:comment": {
+                "@value": "Energy contained in a residual stream from industrial processes in the form of heat, chemical energy or pressure, for which it can be demonstrated that it would have been wasted in the absence of the project activity. Examples of waste energy include the energy contained in gases flared or released into the atmosphere, the heat or pressure from a residual stream not recovered (i.e. wasted).",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "cdm:above-groundBiomass",
+            "@type": "owl:Class",
+            "rdfs:subClassOf": {
+                "@id": "cdm:Biomass"
+            },
+            "owl:disjointWith": {
+                "@id": "cdm:below-groundBiomass"
+            },
+            "rdfs:comment": {
+                "@value": "All living biomass above the soil including stem, stump, branches, bark, seeds, and foliage as well as herbaceous vegetation.",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "cdm:below-groundBiomass",
+            "@type": "owl:Class",
+            "rdfs:subClassOf": {
+                "@id": "cdm:Biomass"
+            },
+            "rdfs:comment": {
+                "@value": "All living biomass of roots. Fine roots of less than (suggested) 2 mm diameter are often excluded because these often cannot be distinguished empirically from soil organic matter or litter.",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "cdm:deadwood",
+            "@type": "owl:Class",
+            "rdfs:subClassOf": {
+                "@id": "cdm:below-groundBiomass"
+            },
+            "rdfs:comment": {
+                "@value": "All non-living woody biomass not contained in the litter, either standing, lying on the ground, or in the soil. Dead wood includes wood lying on the surface, dead roots, and stumps larger than or equal to 10 cm in diameter or any other diameter used by the country.",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "cdm:deadwood",
+            "@type": "owl:Class",
+            "rdfs:subClassOf": {
+                "@id": "cdm:below-groundBiomass"
+            },
+            "rdfs:comment": {
+                "@value": "All non-living woody biomass not contained in the litter, either standing, lying on the ground, or in the soil. Dead wood includes wood lying on the surface, dead roots, and stumps larger than or equal to 10 cm in diameter or any other diameter used by the country.",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "cdm:feedstock",
+            "@type": "owl:Class",
+            "rdfs:subClassOf": {
+                "@id": "aia:Resource"
+            },
+            "rdfs:comment": {
+                "@value": "Gaseous, liquid or solid raw material used in manufacturing.",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "cdm:forest",
+            "@type": "owl:Class",
+            "rdfs:subClassOf": {
+                "@id": "aia:Environment"
+            },
+            "rdfs:comment": {
+                "@value": "A minimum area of land of 0.05-1.0 hectare with tree crown cover (or equivalent stocking level) of more than 10-30 per cent with trees with the potential to reach a minimum height of 2 - 5 metres at maturity in situ and may include: (a) Either closed forest formations where trees of various storeys and undergrowth cover a high proportion of the ground or open forest; (b) Young natural stands and all plantations which have yet to reach a crown density of 10- 30 per cent or tree height of 2-5 metres; (c) Areas normally forming part of the forest area which are temporarily unstocked as a result of human intervention such as harvesting or natural causes but which are expected to revert to forest. The definition of forest becomes applicable to a Party when: (a)For an Annex I Party, the Party selects a single minimum tree crown cover value between 10 and 30 percent, a single minimum land area value between 0.05 and 1 hectare and a single minimum tree height value between 2 and 5 metres, as provided under paragraph 16 of the Annex to decision 16/CMP.1; (b)For a non-Annex I Party, the Party selects a single minimum tree crown cover value between 10 and 30 per cent, a single minimum land area value between 0.05 and 1 hectare and a single minimum tree height value between 2 and 5 metres, as provided under paragraph 8 of the Annex to decision 5/CMP.1.",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "cdm:fossilFuel",
+            "@type": "owl:Class",
+            "rdfs:subClassOf": {
+                "@id": "aia:Resource"
+            },
+            "rdfs:comment": {
+                "@value": "Fuels formed by natural resources such as anaerobic decomposition of buried dead organisms (e.g. coal, oil, and natural gas).",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "cdm:industrialGas",
+            "@type": "owl:Class",
+            "rdfs:subClassOf": {
+                "@id": "cdm:GreenhouseGas"
+            },
+            "rdfs:comment": {
+                "@value": "Greenhouse gases originating from chemical production processes that are not naturally occurring. In addition, N2O from chemical production processes is included in this group of greenhouse gases.",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "cdm:litter",
+            "@type": "owl:Class",
+            "rdfs:subClassOf": {
+                "@id": "cdm:below-groundBiomass"
+            },
+            "rdfs:comment": {
+                "@value": "Includes all non-living biomass with a diameter less than a minimum diameter chosen by the country (for example 10 cm), lying dead, in various states of decomposition above the mineral or organic soil. This includes the litter, fumic, and humic layers. Live fine roots (of less than the suggested diameter limit for below-ground biomass) are included in litter where they cannot be distinguished from it empirically.",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "cdm:non-renewableBiomass",
+            "@type": "owl:Class",
+            "rdfs:subClassOf": {
+                "@id": "cdm:Biomass"
+            },
+            "owl:disjointWith": {
+                "@id": "cdm:renewableBiomass"
+            },
+            "rdfs:comment": {
+                "@value": "Biomass not fulfilling the conditions of renewable biomass is considered as non-renewable.",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "cdm:renewableBiomass",
+            "@type": "owl:Class",
+            "rdfs:subClassOf": {
+                "@id": "cdm:Biomass"
+            },
+            "rdfs:comment": {
+                "@value": "Biomass which meets one of the following conditions: (a) The biomass originates from land areas that are forests where: (i) The land area remains a forest; (ii) Sustainable management practices are undertaken on these land areas to ensure, in particular, that the level of carbon stocks on these land areas does not systematically decrease over time (carbon stocks may temporarily decrease due to harvesting); and (iii) Any national or regional forestry and nature conservation regulations are complied with; (b) The biomass is woody biomass and originates from croplands and/or grasslands where: (i) The land area remains cropland and/or grasslands or is reverted to forest; and (ii) Sustainable management practices are undertaken on these land areas to ensure in particular that the level of carbonstocks on these land areas does not systematically decrease over time (carbon stocks may temporarily decrease due to harvesting); and (iii) Any national or regional forestry, agriculture and nature conservation regulations are complied with; (c) The biomass is non-woody biomass and originates from croplands and/or grasslands where: (i) The land area remains cropland and/or grasslands or is reverted to forest; and (ii) Sustainable management practices are undertaken on these land areas to ensure in particular that the level of carbon stocks on these land areas does not systematically decrease over time (carbon stocks may temporarily decrease due to harvesting); and (iii) Any national or regional forestry, agriculture and nature conservation regulations are complied with; (d) The biomass is a biomass residue and the use of that biomass residue in the CDM project activity (A/R) does not involve a decrease of carbon pools, in particular dead wood, litter or soil organic carbon, on the land areas from which the biomass residues originate; (e) The biomass is the non-fossil fraction of an industrial or municipal waste.",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "cdm:residueBiomass",
+            "@type": "owl:Class",
+            "rdfs:subClassOf": {
+                "@id": "cdm:Biomass"
+            }
+        },
+        {
+            "@id": "cdm:wetland",
+            "@type": "owl:Class",
+            "rdfs:subClassOf": {
+                "@id": "aia:Environment"
+            },
+            "rdfs:comment": {
+                "@value": "Area of land whose soil is saturated with moisture either permanently or seasonally.",
+                "@language": "en"
+            }
+        },
+
+
+
+
+        
+        
+        
+        {
+            "@id": "cdm:AMS-I.D.-18.0",
+            "@type": [
+                "owl:NamedIndividual",
+                "aia:Procedure"
+            ],
+            "rdfs:label": {
+                "@value": "Grid connected renewable electricity generation",
+                "@language": "en"
+            },
+            "rdfs:seeAlso": {
+                "@id": "https://cdm.unfccc.int/methodologies/DB/W3TINZ7KKWCK7L8WTXFQQOFQQH4SBK"
+            }
+        },
+        {
+            "@id": "cdm:Convention",
+            "@type": [
+                "owl:NamedIndividual",
+                "aia:Procedure"
+            ],
+            "rdfs:label": {
+                "@value": "The United Nations Framework Convention on Climate Change (UNFCCC).",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "cdm:sectoralScope1",
+            "@type": [
+                "owl:NamedIndividual",
+                "cdm:SectoralScope"
+            ],
+            "rdfs:label": {
+                "@value": "Energy industries (renewable - / non-renewable sources)",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "cdm:sectoralScope2",
+            "@type": [
+                "owl:NamedIndividual",
+                "cdm:SectoralScope"
+            ],
+            "rdfs:label": {
+                "@value": "Energy distribution",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "cdm:sectoralScope10",
+            "@type": [
+                "owl:NamedIndividual",
+                "cdm:SectoralScope"
+            ],
+            "rdfs:label": {
+                "@value": "Fugitive emissions from fuels (solid, oil and gas)",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "cdm:sectoralScope11",
+            "@type": [
+                "owl:NamedIndividual",
+                "cdm:SectoralScope"
+            ],
+            "rdfs:label": {
+                "@value": "Fugitive emissions from production and consumption of halocarbons and sulphur hexafluoride",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "cdm:sectoralScope12",
+            "@type": [
+                "owl:NamedIndividual",
+                "cdm:SectoralScope"
+            ],
+            "rdfs:label": {
+                "@value": "Solvent use",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "cdm:sectoralScope13",
+            "@type": [
+                "owl:NamedIndividual",
+                "cdm:SectoralScope"
+            ],
+            "rdfs:label": {
+                "@value": "Waste handling and disposal",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "cdm:sectoralScope14",
+            "@type": [
+                "owl:NamedIndividual",
+                "cdm:SectoralScope"
+            ],
+            "rdfs:label": {
+                "@value": "Afforestation and reforestation",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "cdm:sectoralScope15",
+            "@type": [
+                "owl:NamedIndividual",
+                "cdm:SectoralScope"
+            ],
+            "rdfs:label": {
+                "@value": "Agriculture",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "cdm:sectoralScope3",
+            "@type": [
+                "owl:NamedIndividual",
+                "cdm:SectoralScope"
+            ],
+            "rdfs:label": {
+                "@value": "Energy demand",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "cdm:sectoralScope4",
+            "@type": [
+                "owl:NamedIndividual",
+                "cdm:SectoralScope"
+            ],
+            "rdfs:label": {
+                "@value": "Manufacturing Industries",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "cdm:sectoralScope5",
+            "@type": [
+                "owl:NamedIndividual",
+                "cdm:SectoralScope"
+            ],
+            "rdfs:label": {
+                "@value": "Chemical Industries",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "cdm:sectoralScope6",
+            "@type": [
+                "owl:NamedIndividual",
+                "cdm:SectoralScope"
+            ],
+            "rdfs:label": {
+                "@value": "Construction",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "cdm:sectoralScope7",
+            "@type": [
+                "owl:NamedIndividual",
+                "cdm:SectoralScope"
+            ],
+            "rdfs:label": {
+                "@value": "Transport",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "cdm:sectoralScope8",
+            "@type": [
+                "owl:NamedIndividual",
+                "cdm:SectoralScope"
+            ],
+            "rdfs:label": {
+                "@value": "Mining/mineral production",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "cdm:sectoralScope9",
+            "@type": [
+                "owl:NamedIndividual",
+                "cdm:SectoralScope"
+            ],
+            "rdfs:label": {
+                "@value": "Metal production",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "cdm:tool07",
+            "@type": [
+                "owl:NamedIndividual",
+                "cdm:MethodologicalTool"
+            ],
+            "rdfs:label": {
+                "@value": "Tool to calculate the emission factor for an electricity system",
+                "@language": "en"
+            },
+            "rdfs:seeAlso": {
+                "@id": "http://cdm.unfccc.int/methodologies/PAmethodologies/tools/am-tool-07- v7.0.pdf"
+            }
+        },
+
+
+
+
+        
+        
+        
+        {
+            "@type": "owl:AllDifferent",
+            "owl:distinctMembers": [
+                {"@id": "cdm:sectoralScope1"},
+                {"@id": "cdm:sectoralScope10"},
+                {"@id": "cdm:sectoralScope11"},
+                {"@id": "cdm:sectoralScope12"},
+                {"@id": "cdm:sectoralScope13"},
+                {"@id": "cdm:sectoralScope14"},
+                {"@id": "cdm:sectoralScope15"},
+                {"@id": "cdm:sectoralScope2"},
+                {"@id": "cdm:sectoralScope3"},
+                {"@id": "cdm:sectoralScope4"},
+                {"@id": "cdm:sectoralScope5"},
+                {"@id": "cdm:sectoralScope6"},
+                {"@id": "cdm:sectoralScope7"},
+                {"@id": "cdm:sectoralScope8"},
+                {"@id": "cdm:sectoralScope9"}
+            ]    
+        }
+    ]
+}'

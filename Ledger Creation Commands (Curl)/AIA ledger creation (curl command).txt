@@ -1,0 +1,2085 @@
+curl --location 'http://localhost:58090/fluree/create' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+
+    
+    
+    
+    "@context": {
+        "aia": "http://purl.org/aiaontology#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "xml": "http://www.w3.org/XML/1998/namespace",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+        "prov": "http://www.w3.org/ns/prov#",
+        "skos": "http://www.w3.org/2004/02/skos/core#",
+        "time": "http://www.w3.org/2006/time#"
+    },
+    "ledger": "aiao/base",
+    "insert": [
+        {
+            "@id": "http://purl.org/aiaontology",
+            "@type": "owl:Ontology"
+        },
+
+
+
+
+        
+        
+        
+        {
+            "@id": "http://dbpedia.org/ontology/person",
+            "@type": "rdfs:Datatype"
+        },
+        {
+            "@id": "http://purl.org/dc/terms/date",
+            "@type": "rdfs:Datatype"
+        },
+        {
+            "@id": "rdfs:Resource",
+            "@type": "rdfs:Datatype"
+        },
+        {
+            "@id": "xsd:date",
+            "@type": "rdfs:Datatype",
+            "owl:equivalentClass": {
+                "@id": "http://purl.org/dc/terms/date"
+            }
+        },
+
+
+
+
+        
+        
+        
+        {
+            "@id": "aia:calibratedBy",
+            "@type": "owl:ObjectProperty",
+            "owl:inverseOf": {
+                "@id": "aia:calibrates"
+            },
+            "rdfs:domain": {
+                "@id": "aia:MeasurementInstrument"
+            },
+            "rdfs:range": {
+                "@id": "aia:Calibrator"
+            }
+        },
+        {
+            "@id": "aia:calibrates",
+            "@type": "owl:ObjectProperty",
+            "rdfs:domain": {
+                "@id": "aia:Calibrator"
+            },
+            "rdfs:range": {
+                "@id": "aia:MeasurementInstrument"
+            }
+        },
+        {
+            "@id": "aia:compliesWithRequirements",
+            "@type": "owl:ObjectProperty",
+            "rdfs:domain": {
+                "@id": "aia:Auditor"
+            },
+            "rdfs:range": {
+                "@id": "aia:Control"
+            }
+        },
+        {
+            "@id": "aia:comprises",
+            "@type": [
+                "owl:ObjectProperty",
+                "owl:TransitiveProperty",
+                "owl:ReflexiveProperty"
+            ],
+            "rdfs:comment": {
+                "@value": "USE: For Activity, Control, Agent",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "aia:defines",
+            "@type": "owl:ObjectProperty",
+            "owl:inverseOf": {
+                "@id": "aia:isDefinedBy"
+            },
+            "rdfs:range": {
+                "@id": "aia:Environment"
+            },
+            "rdfs:comment": {
+                "@value": "A collection of Parameters defines an Environment.",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "aia:forParameter",
+            "@type": "owl:ObjectProperty",
+            "rdfs:domain": {
+                "@id": "aia:ExpressionSymbol"
+            },
+            "rdfs:range": {
+                "@id": "aia:Parameter"
+            }
+        },
+        {
+            "@id": "aia:fromImpactClaim",
+            "@type": "owl:ObjectProperty",
+            "owl:inverseOf": {
+                "@id": "aia:hasIPP"
+            },
+            "rdfs:domain": {
+                "@id": "aia:IPP"
+            },
+            "rdfs:range": {
+                "@id": "aia:ImpactClaim"
+            }
+        },
+        
+        {
+            "@id": "aia:hasActivity",
+            "@type": "owl:ObjectProperty",
+            "rdfs:domain": {
+                "@id": "aia:ImpactClaim"
+            },
+            "rdfs:range": {
+                "@id": "aia:Activity"
+            }
+        },
+        {
+            "@id": "aia:hasActivityClass",
+            "@type": "owl:ObjectProperty",
+            "rdfs:domain": {
+                "@id": "aia:Activity"
+            },
+            "rdfs:range": {
+                "@id": "aia:ActivityClass"
+            }
+        },
+        {
+            "@id": "aia:hasCRS",
+            "@type": "owl:ObjectProperty",
+            "rdfs:domain": {
+                "@id": "aia:Location"
+            },
+            "rdfs:range": {
+                "@id": "aia:CRS"
+            },
+            "rdfs:comment": {
+                "@value": "EDIT",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "aia:hasCalculation",
+            "@type": "owl:ObjectProperty",
+            "rdfs:range": {
+                "@id": "aia:Calculation"
+            }
+        },
+        {
+            "@id": "aia:hasClaimant",
+            "@type": "owl:ObjectProperty",
+            "owl:inverseOf": {
+                "@id": "aia:makesClaim"
+            },
+            "rdfs:domain": {
+                "@id": "aia:Claim"
+            },
+            "rdfs:range": {
+                "@id": "aia:Agent"
+            }
+        },
+        {
+            "@id": "aia:hasCondition",
+            "@type": "owl:ObjectProperty",
+            "rdfs:domain": {
+                "@id": "aia:Control"
+            },
+            "rdfs:range": {
+                "@id": "aia:State"
+            },
+            "rdfs:comment": {
+                "@value": "Indicates the State that must exist for the specific Control to be applicable.",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "aia:hasControl",
+            "@type": "owl:ObjectProperty",
+            "rdfs:range": {
+                "@id": "aia:Control"
+            }
+        },
+        {
+            "@id": "aia:hasDuration",
+            "@type": "owl:ObjectProperty",
+            "rdfs:domain": {
+                "@id": "aia:Period"
+            },
+            "rdfs:range": {
+                "@id": "time:Duration"
+            }
+        },
+        {
+            "@id": "aia:hasEnvironment",
+            "@type": "owl:ObjectProperty",
+            "rdfs:domain": {
+                "@id": "aia:State"
+            },
+            "rdfs:range": {
+                "@id": "aia:Environment"
+            },
+            "rdfs:comment": {
+                "@value": "The Environment for which the Parameter'\''s value was measured/calculated",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "aia:hasFormula",
+            "@type": "owl:ObjectProperty",
+            "rdfs:domain": {
+                "@id": "aia:Calculation"
+            },
+            "rdfs:range": {
+                "@id": "aia:Formula"
+            }
+        },
+        {
+            "@id": "aia:hasIPP",
+            "@type": "owl:ObjectProperty",
+            "rdfs:domain": {
+                "@id": "aia:ImpactClaim"
+            },
+            "rdfs:range": {
+                "@id": "aia:IPP"
+            }
+        },
+        {
+            "@id": "aia:hasInput",
+            "@type": "owl:ObjectProperty",
+            "rdfs:domain": {
+                "@id": "aia:Activity"
+            },
+            "rdfs:range": {
+                "@id": "aia:Input"
+            }
+        },
+        {
+            "@id": "aia:hasInstrument",
+            "@type": "owl:ObjectProperty",
+            "rdfs:domain": {
+                "@id": "aia:Activity"
+            },
+            "rdfs:range": {
+                "@id": "aia:Instrument"
+            }
+        },
+        {
+            "@id": "aia:hasLocation",
+            "@type": "owl:ObjectProperty",
+            "rdfs:range": {
+                "@id": "aia:Location"
+            }
+        },
+        {
+            "@id": "aia:hasMethodology",
+            "@type": "owl:ObjectProperty",
+            "rdfs:domain": {
+                "@id": "aia:ImpactClaim"
+            },
+            "rdfs:range": {
+                "@id": "aia:Control"
+            }
+        },
+        {
+            "@id": "aia:hasOutput",
+            "@type": "owl:ObjectProperty",
+            "rdfs:domain": {
+                "@id": "aia:Activity"
+            },
+            "rdfs:range": {
+                "@id": "aia:Output"
+            }
+        },
+        {
+            "@id": "aia:hasParVal",
+            "@type": "owl:ObjectProperty",
+            "owl:inverseOf": {
+                "@id": "aia:isParValOf"
+            },
+            "rdfs:domain": [
+                {
+                    "@id": "aia:Parameter"
+                },
+                {
+                    "@id": "aia:Variable"
+                }
+            ],
+            "rdfs:range": {
+                "@id": "aia:State"
+            }
+        },
+        {
+            "@id": "aia:hasPeriod",
+            "@type": "owl:ObjectProperty",
+            "rdfs:range": {
+                "@id": "aia:Period"
+            }
+        },
+        {
+            "@id": "aia:hasPoint",
+            "@type": "owl:ObjectProperty",
+            "rdfs:domain": {
+                "@id": "aia:Location"
+            },
+            "rdfs:range": {
+                "@id": "aia:Point"
+            }
+        },
+        {
+            "@id": "aia:hasProvenance",
+            "@type": "owl:ObjectProperty",
+            "rdfs:domain": {
+                "@id": "aia:State"
+            },
+            "rdfs:range": {
+                "@id": "aia:Activity"
+            }
+        },
+        {
+            "@id": "aia:hasReputation",
+            "@type": "owl:ObjectProperty",
+            "rdfs:domain": {
+                "@id": "aia:Agent"
+            },
+            "rdfs:range": {
+                "@id": "aia:Reputation"
+            },
+            "rdfs:comment": {
+                "@value": "EDIT",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "aia:hasRole",
+            "@type": "owl:ObjectProperty",
+            "rdfs:domain": {
+                "@id": "aia:Agent"
+            },
+            "rdfs:range": {
+                "@id": "aia:Role"
+            },
+            "rdfs:comment": {
+                "@value": "EDIT",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "aia:hasStateDiff",
+            "@type": "owl:ObjectProperty",
+            "rdfs:domain": {
+                "@id": "aia:ImpactClaim"
+            },
+            "rdfs:range": {
+                "@id": "aia:StateDiff"
+            }
+        },
+        {
+            "@id": "aia:hasSubject",
+            "@type": "owl:ObjectProperty",
+            "rdfs:domain": {
+                "@id": "aia:Control"
+            }
+        },
+        {
+            "@id": "aia:hasSymbol",
+            "@type": "owl:ObjectProperty",
+            "rdfs:domain": [
+                {
+                    "@id": "aia:ExpressionSymbol"
+                },
+                {
+                    "@id": "aia:Variable"
+                }
+            ],
+            "rdfs:range": {
+                "@id": "aia:ExpressionSymbol"
+            }
+        },
+        {
+            "@id": "aia:hasType",
+            "@type": "owl:ObjectProperty",
+            "rdfs:domain": {
+                "@id": "aia:Location"
+            },
+            "rdfs:range": {
+                "@id": "aia:Location"
+            }
+        },
+        {
+            "@id": "aia:hasVariable",
+            "@type": "owl:ObjectProperty",
+            "rdfs:domain": {
+                "@id": "aia:Calculation"
+            },
+            "rdfs:range": {
+                "@id": "aia:Variable"
+            }
+        },
+        {
+            "@id": "aia:impacts",
+            "@type": "owl:ObjectProperty",
+            "owl:inverseOf": {
+                "@id": "aia:isImpactedBy"
+            },
+            "rdfs:domain": [
+                {
+                    "@id": "aia:Activity"
+                },
+                {
+                    "@id": "aia:Event"
+                }
+            ],
+            "rdfs:range": {
+                "@id": "aia:Environment"
+            }
+        },
+        {
+            "@id": "aia:impliesType",
+            "@type": "owl:ObjectProperty",
+            "rdfs:domain": {
+                "@id": "aia:CRS"
+            },
+            "rdfs:range": {
+                "@id": "aia:Location"
+            },
+            "rdfs:comment": {
+                "@value": "EDIT",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "aia:isDefinedBy",
+            "@type": "owl:ObjectProperty",
+            "rdfs:domain": {
+                "@id": "aia:Environment"
+            },
+            "rdfs:range": {
+                "@id": "aia:Parameter"
+            }
+        },
+        {
+            "@id": "aia:isImpactedBy",
+            "@type": "owl:ObjectProperty",
+            "rdfs:domain": {
+                "@id": "aia:Environment"
+            },
+            "rdfs:range": [
+                {
+                    "@id": "aia:Activity"
+                },
+                {
+                    "@id": "aia:Event"
+                }
+            ]
+        },
+        {
+            "@id": "aia:isLimitedOrDirectedBy",
+            "@type": "owl:ObjectProperty",
+            "owl:inverseOf": {
+                "@id": "aia:limitsOrDirects"
+            },
+            "rdfs:domain": {
+                "@id": "owl:Thing"
+            },
+            "rdfs:range": {
+                "@id": "aia:Control"
+            }
+        },
+        {
+            "@id": "aia:isOperatedBy",
+            "@type": "owl:ObjectProperty",
+            "owl:inverseOf": {
+                "@id": "aia:operates"
+            },
+            "rdfs:domain": {
+                "@id": "aia:Instrument"
+            },
+            "rdfs:range": {
+                "@id": "aia:Operator"
+            }
+        },
+        {
+            "@id": "aia:isOwnedBy",
+            "@type": "owl:ObjectProperty",
+            "owl:inverseOf": {
+                "@id": "aia:owns"
+            },
+            "rdfs:domain": {
+                "@id": "owl:Thing"
+            },
+            "rdfs:range": {
+                "@id": "aia:Owner"
+            }
+        },
+        {
+            "@id": "aia:isParValOf",
+            "@type": [
+                "owl:ObjectProperty",
+                "owl:AsymmetricProperty"
+            ],
+            "rdfs:domain": {
+                "@id": "aia:State"
+            },
+            "rdfs:range": {
+                "@id": "aia:Parameter"
+            }
+        },
+        {
+            "@id": "aia:isPerformedBy",
+            "@type": "owl:ObjectProperty",
+            "owl:inverseOf": {
+                "@id": "aia:performs"
+            },
+            "rdfs:domain": {
+                "@id": "aia:Activity"
+            },
+            "rdfs:range": {
+                "@id": "aia:Agent"
+            }
+        },
+        {
+            "@id": "aia:isPerformedWith",
+            "@type": "owl:ObjectProperty",
+            "owl:inverseOf": {
+                "@id": "aia:usedToPerform"
+            },
+            "rdfs:domain": {
+                "@id": "aia:Activity"
+            },
+            "rdfs:range": {
+                "@id": "aia:Instrument"
+            }
+        },
+        {
+            "@id": "aia:isStateDiffFrom",
+            "@type": "owl:ObjectProperty",
+            "rdfs:domain": {
+                "@id": "aia:State"
+            },
+            "rdfs:range": {
+                "@id": "aia:State"
+            }
+        },
+        {
+            "@id": "aia:isVerifiedBy",
+            "@type": "owl:ObjectProperty",
+            "owl:inverseOf": {
+                "@id": "aia:isVerifierOf"
+            },
+            "rdfs:domain": {
+                "@id": "aia:Claim"
+            },
+            "rdfs:range": {
+                "@id": "aia:Auditor"
+            }
+        },
+        {
+            "@id": "aia:isVerifierOf",
+            "@type": "owl:ObjectProperty",
+            "rdfs:domain": {
+                "@id": "aia:Auditor"
+            },
+            "rdfs:range": {
+                "@id": "aia:Claim"
+            }
+        },
+        {
+            "@id": "aia:limitsOrDirects",
+            "@type": [
+                "owl:ObjectProperty",
+                "owl:AsymmetricProperty"
+            ],
+            "rdfs:domain": {
+                "@id": "aia:Control"
+            },
+            "rdfs:range": {
+                "@id": "owl:Thing"
+            }
+        },
+        {
+            "@id": "aia:makesClaim",
+            "@type": "owl:ObjectProperty",
+            "rdfs:domain": {
+                "@id": "aia:Agent"
+            },
+            "rdfs:range": {
+                "@id": "aia:Claim"
+            },
+            "rdfs:comment": {
+                "@value": "FIX: this does not work while Role exists/Auditor etc. is not a subClassOf Agent.",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "aia:makesImpactClaim",
+            "@type": "owl:ObjectProperty",
+            "rdfs:domain": {
+                "@id": "aia:Agent"
+            },
+            "rdfs:range": {
+                "@id": "aia:ImpactClaim"
+            }
+        },
+        {
+            "@id": "aia:operates",
+            "@type": "owl:ObjectProperty",
+            "rdfs:domain": {
+                "@id": "aia:Operator"
+            },
+            "rdfs:range": {
+                "@id": "aia:Instrument"
+            }
+        },
+        {
+            "@id": "aia:owns",
+            "@type": "owl:ObjectProperty",
+            "rdfs:domain": {
+                "@id": "aia:Owner"
+            },
+            "rdfs:range": {
+                "@id": "owl:Thing"
+            }
+        },
+        {
+            "@id": "aia:performs",
+            "@type": "owl:ObjectProperty",
+            "rdfs:domain": {
+                "@id": "aia:Agent"
+            },
+            "rdfs:range": {
+                "@id": "aia:Activity"
+            }
+        },
+        {
+            "@id": "aia:regardsVeracity",
+            "@type": "owl:ObjectProperty",
+            "rdfs:domain": {
+                "@id": "aia:Claim"
+            },
+            "rdfs:range": {
+                "@id": "aia:Claim"
+            },
+            "rdfs:comment": {
+                "@value": "FIX: this does not work while Role exists/Auditor etc. is not a subClassOf Agent.",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "aia:usedInActivity",
+            "@type": "owl:ObjectProperty",
+            "owl:inverseOf": {
+                "@id": "aia:usesResource"
+            },
+            "rdfs:domain": {
+                "@id": "aia:Resource"
+            },
+            "rdfs:range": {
+                "@id": "aia:Activity"
+            },
+            "rdfs:comment": {
+                "@value": "EDIT",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "aia:usedToPerform",
+            "@type": "owl:ObjectProperty",
+            "rdfs:domain": {
+                "@id": "aia:Instrument"
+            },
+            "rdfs:range": {
+                "@id": "aia:Activity"
+            }
+        },
+        {
+            "@id": "aia:usesResource",
+            "@type": "owl:ObjectProperty",
+            "rdfs:domain": {
+                "@id": "aia:Activity"
+            },
+            "rdfs:range": {
+                "@id": "aia:Resource"
+            },
+            "rdfs:comment": {
+                "@value": "EDIT",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "aia:usesSymbol",
+            "@type": "owl:ObjectProperty",
+            "rdfs:domain": {
+                "@id": "aia:Formula"
+            },
+            "rdfs:range": {
+                "@id": "aia:ExpressionSymbol"
+            }
+        },
+        {
+            "@id": "aia:verifies",
+            "@type": "owl:ObjectProperty",
+            "rdfs:domain": {
+                "@id": "aia:Agent"
+            },
+            "rdfs:range": {
+                "@id": "aia:Claim"
+            },
+            "rdfs:comment": {
+                "@value": "FIX: this does not work while Role exists/Auditor etc. is not a subClassOf Agent.",
+                "@language": "en"
+            }
+        },
+
+
+
+        
+        
+        
+        {
+            "@id": "aia:appliesToParameters",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:range": {
+                "@id": "xsd:string"
+            },
+            "rdfs:comment": {
+                "@value": "The parameters to which this methodology applies.",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "aia:hasAccuracy",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "aia:MeasurementInstrument"
+            },
+            "rdfs:range": {
+                "@id": "xsd:float"
+            }
+        },
+        {
+            "@id": "aia:hasActivityCode",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "aia:ActivityClass"
+            },
+            "rdfs:range": {
+                "@id": "xsd:string"
+            }
+        },
+        {
+            "@id": "aia:hasCodeInRegistry",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": [
+                {
+                    "@id": "aia:ActivityClass"
+                },
+                {
+                    "@id": "aia:Parameter"
+                }
+            ],
+            "rdfs:range": {
+                "@id": "xsd:string"
+            }
+        },
+        {
+            "@id": "aia:hasConfLowerBound",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "aia:State"
+            },
+            "rdfs:range": {
+                "@id": "xsd:float"
+            }
+        },
+        {
+            "@id": "aia:hasConfUpperBound",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "aia:State"
+            },
+            "rdfs:range": {
+                "@id": "xsd:float"
+            }
+        },
+        {
+            "@id": "aia:hasConfidenceLevel",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "aia:State"
+            },
+            "rdfs:range": {
+                "@id": "xsd:float"
+            }
+        },
+        {
+            "@id": "aia:hasDefinition",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "aia:Parameter"
+            },
+            "rdfs:range": {
+                "@id": "xsd:string"
+            }
+        },
+        {
+            "@id": "aia:hasDescription",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": [
+                {
+                    "@id": "aia:Environment"
+                },
+                {
+                    "@id": "aia:Instrument"
+                }
+            ],
+            "rdfs:range": {
+                "@id": "xsd:string"
+            }
+        },
+        {
+            "@id": "aia:hasExpression",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "aia:Formula"
+            },
+            "rdfs:range": {
+                "@id": "xsd:string"
+            }
+        },
+        {
+            "@id": "aia:hasLabel",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "aia:Location"
+            },
+            "rdfs:range": {
+                "@id": "xsd:string"
+            },
+            "rdfs:comment": {
+                "@value": "An optional human-understandable label for an entity of type Location, eg. a street adress.",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "aia:hasLogicalOperator",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "aia:Control"
+            },
+            "rdfs:range": {
+                "@id": "xsd:string"
+            },
+            "rdfs:comment": {
+                "@value": "Less than, greater than, equal to, include, exclude, etc. Used to relate the subject and value of a Control, for example:  C a Control;  hasSubject ActivityB.startDate;  hasValue ActivityA.endDate;  hasOperator >= .         is equivalent to the condition (Control) that Activity B only commence after the end of Activity A.",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "aia:hasMake",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "aia:Instrument"
+            },
+            "rdfs:range": {
+                "@id": "xsd:string"
+            }
+        },
+        {
+            "@id": "aia:hasModality",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:range": {
+                "@id": "xsd:boolean"
+            },
+            "rdfs:comment": {
+                "@value": "Counterfactual (FALSE) or real (TRUE).",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "aia:hasModel",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "aia:Instrument"
+            },
+            "rdfs:range": {
+                "@id": "xsd:string"
+            }
+        },
+        {
+            "@id": "aia:hasName",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "aia:Agent"
+            },
+            "rdfs:range": {
+                "@id": "xsd:string"
+            }
+        },
+        {
+            "@id": "aia:hasPrecision",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": [
+                {
+                    "@id": "aia:MeasurementInstrument"
+                },
+                {
+                    "@id": "aia:Parameter"
+                }
+            ],
+            "rdfs:range": {
+                "@id": "xsd:float"
+            }
+        },
+        {
+            "@id": "aia:hasRationale",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "aia:Parameter"
+            },
+            "rdfs:range": {
+                "@id": "xsd:string"
+            }
+        },
+        {
+            "@id": "aia:hasReferenceSystem",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "aia:Location"
+            },
+            "rdfs:range": {
+                "@id": "xsd:string"
+            },
+            "rdfs:comment": {
+                "@value": "EDIT for use with Location",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "aia:hasRegistry",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": [
+                {
+                    "@id": "aia:ActivityClass"
+                },
+                {
+                    "@id": "aia:Instrument"
+                },
+                {
+                    "@id": "aia:Parameter"
+                }
+            ],
+            "rdfs:range": {
+                "@id": "xsd:string"
+            }
+        },
+        {
+            "@id": "aia:hasRegistryVersion",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": [
+                {
+                    "@id": "aia:Instrument"
+                },
+                {
+                    "@id": "aia:Parameter"
+                }
+            ],
+            "rdfs:range": {
+                "@id": "xsd:string"
+            }
+        },
+        {
+            "@id": "aia:hasSource",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:range": {
+                "@id": "xsd:string"
+            }
+        },
+        {
+            "@id": "aia:hasSymbol",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:range": {
+                "@id": "xsd:string"
+            }
+        },
+        {
+            "@id": "aia:hasTimestamp",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "aia:State"
+            },
+            "rdfs:range": {
+                "@id": "xsd:dateTime"
+            },
+            "rdfs:comment": [
+                {
+                    "@value": "Format: YYYY-MM-DDThh:mm:ss",
+                    "@language": "en"
+                },
+                {
+                    "@value": "The moment of measurement of the value of a Parameter that defines the State.",
+                    "@language": "en"
+                }
+            ]
+        },
+        {
+            "@id": "aia:hasUnitOfMeasure",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "aia:Parameter"
+            },
+            "rdfs:range": {
+                "@id": "rdf:PlainLiteral"
+            }
+        },
+        {
+            "@id": "aia:hasValue",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": [
+                {
+                    "@id": "aia:Control"
+                },
+                {
+                    "@id": "aia:State"
+                }
+            ],
+            "rdfs:range": {
+                "@id": "rdfs:Resource"
+            }
+        },
+        {
+            "@id": "aia:isBinding",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "aia:Control"
+            },
+            "rdfs:range": {
+                "@id": "xsd:boolean"
+            },
+            "rdfs:comment": {
+                "@value": "Used to indicate whether a Control is obligatory (TRUE) or non-obligatory (FALSE)",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "aia:isSymbol",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "aia:ExpressionSymbol"
+            },
+            "rdfs:range": {
+                "@id": "xsd:string"
+            }
+        },
+        {
+            "@id": "aia:pointHasAltitude",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "aia:Point"
+            },
+            "rdfs:range": {
+                "@id": "xsd:string"
+            }
+        },
+        {
+            "@id": "aia:pointHasLatitude",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "aia:Point"
+            },
+            "rdfs:range": {
+                "@id": "xsd:string"
+            }
+        },
+        {
+            "@id": "aia:pointHasLongitude",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "aia:Point"
+            },
+            "rdfs:range": {
+                "@id": "xsd:string"
+            }
+        },
+        {
+            "@id": "aia:wasCalibratedOn",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "aia:MeasurementInstrument"
+            },
+            "rdfs:range": {
+                "@id": "xsd:dateTime"
+            },
+            "rdfs:comment": {
+                "@value": "Format: YYYY-MM-DDThh:mm:ss",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "aia:wasManufacturedOn",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "aia:Instrument"
+            },
+            "rdfs:range": {
+                "@id": "xsd:date"
+            },
+            "rdfs:comment": {
+                "@value": "Format: eg. 2022-01-16",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "time:hasDuration",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "aia:Period"
+            }
+        },
+        {
+            "@id": "prov:endedAtTime",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "aia:Period"
+            },
+            "rdfs:range": {
+                "@id": "xsd:dateTime"
+            },
+            "rdfs:comment": {
+                "@value": "Format: YYYY-MM-DDThh:mm:ss",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "prov:startedAtTime",
+            "@type": "owl:DatatypeProperty",
+            "rdfs:domain": {
+                "@id": "aia:Period"
+            },
+            "rdfs:range": {
+                "@id": "xsd:dateTime"
+            },
+            "rdfs:comment": {
+                "@value": "Format: YYYY-MM-DDThh:mm:ss",
+                "@language": "en"
+            }
+        },
+
+
+
+        
+        
+        
+        {
+            "@id": "aia:AccountingPeriod",
+            "@type": "owl:Class",
+            "rdfs:subClassOf": {
+                "@id": "aia:Period"
+            },
+            "rdfs:label": {
+                "@value": "AccountingPeriod",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "aia:Activity",
+            "@type": "owl:Class",
+            "owl:equivalentClass": {
+                "@id": "prov:Activity"
+            },
+            "owl:disjointWith": {
+                "@id": "aia:Event"
+            },
+            "rdfs:comment": {
+                "@value": "An Activity may comprise other Activity/ies, e.g. a project (an Activity) consists of many Activities. Use the '\''comprises'\'' property to indicate this.",
+                "@language": "en"
+            },
+            "skos:altLabel": "Action"
+        },
+        {
+            "@id": "aia:ActivityClass",
+            "@type": "owl:Class",
+            "rdfs:comment": [
+                {
+                    "@value": "EDIT aia could also have its own registry, hosted online as referenced, for example, as follows: Name: AIAO Value Determination Activities  Version = 1.00   Contents:    Activity.  |  Code    CALCULATE      1. MEASURE   2   SOURCE   3    ESTIMATE    4",
+                    "@language": "en"
+                },
+                {
+                    "@value": "USE: First specify the registry from which the activity code should be read (hasRegistry and hasRegistryVersion), then specify the activity code (hasCodeInRegistry). Then an Activity has an ActivityClass, with these properties specified.",
+                    "@language": "en"
+                }
+            ]
+        },
+        {
+            "@id": "aia:Agent",
+            "@type": "owl:Class",
+            "rdfs:subClassOf": {
+                "@type": "owl:Class",
+                "owl:unionOf": [
+                    {
+                        "@id": "aia:LegalPerson"
+                    },
+                    {
+                        "@id": "aia:NaturalPerson"
+                    }
+                ]
+            },
+            "rdfs:comment": {
+                "@value": "An agent is something that bears some form of responsibility for an activity taking place, for the existence of an entity, or for another agent'\''s activity. (http://www.w3.org/ns/prov#Agent)",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "aia:Audit",
+            "@type": "owl:Class",
+            "rdfs:subClassOf": {
+                "@id": "aia:Activity"
+            },
+            "rdfs:comment": {
+                "@value": "Audit is the act of verifying a claim",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "aia:Auditor",
+            "@type": "owl:Class",
+            "owl:equivalentClass": {
+                "@type": "owl:Class",
+                "owl:intersectionOf": [
+                    {
+                        "@type": "owl:Restriction",
+                        "owl:onProperty": "aia:compliesWithRequirements",
+                        "owl:someValuesFrom": {
+                            "@id": "aia:Control"
+                        }
+                    },
+                    {
+                        "@type": "owl:Restriction",
+                        "owl:onProperty": "aia:isVerifierOf",
+                        "owl:someValuesFrom": {
+                            "@id": "aia:Claim"
+                        }
+                    }
+                ]
+            },
+            "rdfs:subClassOf": {
+                "@id": "aia:Verifier"
+            },
+            "owl:annotatedSource": {
+                "@id": "aia:Auditor"
+            },
+            "owl:annotatedProperty": {
+                "@id": "owl:equivalentClass"
+            },
+            "owl:annotatedTarget": {
+                "@type": "owl:Class",
+                "owl:intersectionOf": [
+                    {
+                        "@type": "owl:Restriction",
+                        "owl:onProperty": "aia:compliesWithRequirements",
+                        "owl:someValuesFrom": {
+                            "@id": "aia:Control"
+                        }
+                    },
+                    {
+                        "@type": "owl:Restriction",
+                        "owl:onProperty": "aia:isVerifierOf",
+                        "owl:someValuesFrom": {
+                            "@id": "aia:Claim"
+                        }
+                    }
+                ]
+            },
+            "rdfs:comment": {
+                "@value": "The requirement for an Agent to fulfill the Role of Auditor is that they verify some Claim AND complies with the (legal) Controls for being an Auditor",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "aia:CRS",
+            "@type": "owl:Class",
+            "rdfs:comment": {
+                "@value": "EDIT",
+                "@language": "en"
+            },
+            "rdfs:label": {
+                "@value": "Coordinate Reference System",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "aia:Calculation",
+            "@type": "owl:Class",
+            "rdfs:label": {
+                "@value": "Calculation",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "aia:Calibrator",
+            "@type": "owl:Class",
+            "owl:equivalentClass": {
+                "@type": "owl:Restriction",
+                "owl:onProperty": "aia:calibrates",
+                "owl:someValuesFrom": {
+                    "@id": "aia:MeasurementInstrument"
+                }
+            },
+            "rdfs:subClassOf": {
+                "@id": "aia:Role"
+            }
+        },
+        {
+            "@id": "aia:Claim",
+            "@type": "owl:Class",
+            "rdfs:comment": {
+                "@value": "A claim is a statement about a (some specific) thing.",
+                "@language": "en"
+            },
+            "rdfs:label": [
+                {
+                    "@value": "A Claim may comprise other Claim/s, e.g. a report (a Claim) consists of many Claims. Use the '\''comprises'\'' property to indicate this.",
+                    "@language": "en"
+                },
+                {
+                    "@value": "Claim (noun)",
+                    "@language": "en"
+                } 
+            ],
+            "rdfs:seeAlso": {
+                "@id": "https://www.w3.org/2003/glossary/keyword/All/assertion.html?keywords=assertion"
+            },
+            "skos:altLabel": "Assertion"
+        },
+        {
+            "@id": "aia:ClaimAct",
+            "@type": "owl:Class",
+            "rdfs:subClassOf": {
+                "@id": "aia:Activity"
+            },
+            "rdfs:comment": {
+                "@value": "The activity of making a statement about a (specific) thing.",
+                "@language": "en"
+            },
+            "rdfs:label": {
+                "@value": "Claim (verb)",
+                "@language": "en"
+            },
+            "skos:altLabel": "Assert"
+        },
+        {
+            "@id": "aia:Claimant",
+            "@type": "owl:Class",
+            "owl:equivalentClass": {
+                "@type": "owl:Restriction",
+                "owl:onProperty": "aia:makesClaim",
+                "owl:someValuesFrom": {
+                    "@id": "aia:Claim"
+                }
+            },
+            "rdfs:subClassOf": {
+                "@id": "aia:Role"
+            },
+            "owl:annotatedProperty": {
+                "@id": "owl:equivalentClass"
+            },
+            "owl:annotatedTarget": {
+                "@type": "owl:Restriction",
+                "owl:onProperty": "aia:makesClaim",
+                "owl:someValuesFrom": {
+                    "@id": "aia:Claim"
+                }
+            },
+            "rdfs:comment": "The requirement for an Agent to fulfill the Role of Claimant is that they make some Claim."
+        },
+        {
+            "@id": "aia:Control",
+            "@type": "owl:Class",
+            "rdfs:comment": [
+                {
+                    "@value": "A Control may comprise other Controls, e.g. a methodology (a Control) defines many conditions to be met (themselves Controls). Use the '\''comprises'\'' property to indicate this.",
+                    "@language": "en"
+                },
+                {
+                    "@value": "EDIT Procedures, plans, objectives/goals, processes, requirements, specifications, standards are all Controls",
+                    "@language": "en"
+                },
+                {
+                    "@value": "NOT FINAL: A Control limits or directs a thing",
+                    "@language": "en"
+                }
+            ]
+        },
+        {
+            "@id": "aia:CreditingPeriod",
+            "@type": "owl:Class",
+            "rdfs:subClassOf": {
+                "@id": "aia:Period"
+            }
+        },
+        {
+            "@id": "aia:Developer",
+            "@type": "owl:Class",
+            "rdfs:subClassOf": {
+                "@id": "aia:Role"
+            },
+            "rdfs:comment": {
+                "@value": "NOT FINAL \"[A] person or thing that develops something.\" (OED, Google)",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "aia:DriverIPP",
+            "@type": "owl:Class",
+            "rdfs:subClassOf": {
+                "@id": "aia:IPP"
+            }
+        },
+        {
+            "@id": "aia:EffectIPP",
+            "@type": "owl:Class",
+            "rdfs:subClassOf": {
+                "@id": "aia:IPP"
+            }
+        },
+        {
+            "@id": "aia:Environment",
+            "@type": "owl:Class",
+            "rdfs:comment": {
+                "@value": "NOT FINAL The surroundings and conditions in which a thing exists.",
+                "@language": "en"
+            },
+            "rdfs:label": {
+                "@value": "Environment",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "aia:Event",
+            "@type": "owl:Class",
+            "owl:equivalentClass": [
+                {
+                    "@id": "http://purl.org/dc/dcmitype/Event"
+                },
+                {
+                    "@id": "prov:InstantaneousEvent"
+                }
+            ],
+            "rdfs:comment": [
+                {
+                    "@value": "\"[A] thing that happens or takes place,...\" (OED, Google)",
+                    "@language": "en" 
+                },
+                {
+                    "@value": "EDIT: A change in the environment that is not brought about the willful act of an agent.",
+                    "@language": "en"
+                }
+            ],
+            "rdfs:label": {
+                "@value": "Event",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "aia:ExposureIPP",
+            "@type": "owl:Class",
+            "rdfs:subClassOf": {
+                "@id": "aia:IPP"
+            }
+        },
+        {
+            "@id": "aia:ExpressionSymbol",
+            "@type": "owl:Class"
+        },
+        {
+            "@id": "aia:Formula",
+            "@type": "owl:Class"
+        },
+        {
+            "@id": "aia:IPP",
+            "@type": "owl:Class",
+            "rdfs:comment": {
+                "@value": "FIX according to DPSEEA model",
+                "@language": "en"
+            },
+            "rdfs:label": {
+                "@value": "Impact Pathway Position (according to DPSEEA model)",
+                "@language": "en"
+            },
+            "rdfs:seeAlso": {
+                "@id": "https://archive.epa.gov/ged/tutorial/web/html/slide0004-4.html"
+            }
+        },
+        {
+            "@id": "aia:ImpactClaim",
+            "@type": "owl:Class",
+            "owl:equivalentClass": {
+                "@id": "_:b1"
+            },
+            "rdfs:subClassOf": {
+                "@id": "aia:Claim"
+            },
+            "rdfs:label": "Impact claim",
+            "rdfs:comment": "An instance of ImpactClaim should have an associated object for each predicate for which ImpactClaim is defined to be the subject."
+        },
+        {
+            "@id": "_:b1",
+            "@type": "owl:Class",
+            "owl:intersectionOf": [
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": {
+                        "@id": "aia:comprises"
+                    },
+                    "owl:someValuesFrom": {
+                        "@id": "aia:ImpactClaim"
+                    }
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": {
+                        "@id": "aia:hasActivity"
+                    },
+                    "owl:someValuesFrom": {
+                        "@id": "aia:Activity"
+                    }
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": {
+                        "@id": "aia:hasClaimant"
+                    },
+                    "owl:someValuesFrom": {
+                        "@id": "aia:Agent"
+                    }
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": {
+                        "@id": "aia:hasIPP"
+                    },
+                    "owl:someValuesFrom": {
+                        "@id": "aia:IPP"
+                    }
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": {
+                        "@id": "aia:hasMethodology"
+                    },
+                    "owl:someValuesFrom": {
+                        "@id": "aia:Control"
+                    }
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": {
+                        "@id": "aia:hasPeriod"
+                    },
+                    "owl:someValuesFrom": {
+                        "@id": "aia:Period"
+                    }
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": {
+                        "@id": "aia:hasStateDiff"
+                    },
+                    "owl:someValuesFrom": {
+                        "@id": "aia:StateDiff"
+                    }
+                }
+            ]
+        },
+        {
+            "@id": "aia:Input",
+            "@type": "owl:Class",
+            "owl:disjointWith": [
+                {
+                    "@id": "aia:Instrument"
+                },
+                {
+                    "@id": "aia:Output"
+                }
+            ],
+            "rdfs:comment": {
+                "@value": "NOT FINAL \"[W]hat is put in, taken in, or operated on by any process or system.\" (OED, Google)",
+                "@language": "en"
+            },
+            "rdfs:label": {
+                "@value": "Input",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "aia:Instrument",
+            "@type": "owl:Class",
+            "rdfs:comment": [
+                {
+                    "@value": "EDIT An instrument is used by an agent to perform an Activity. Differs from Input; Input is consumed during the Activity, while an Instrument is not.",
+                    "@language": "en"
+                },
+                {
+                    "@value": "NOT FINAL \"[A] tool or implement, especially one for precision work.\" (OED, Google)",
+                    "@language": "en"
+                } 
+            ],
+            "rdfs:label": {
+                "@value": "Instrument",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "aia:LegalPerson",
+            "@type": "owl:Class",
+            "owl:equivalentClass": {
+                "@id": "http://www.wikidata.org/wiki/Q3778211"
+            }
+        },
+        {
+            "@id": "aia:Line",
+            "@type": "owl:Class",
+            "rdfs:subClassOf": {
+                "@id": "aia:Location"
+            }
+        },
+        {
+            "@id": "aia:Location",
+            "@type": "owl:Class",
+            "owl:equivalentClass": {
+                "@id": "http://purl.org/dc/terms/Location"
+            },
+            "rdfs:comment": [
+                {
+                    "@value": "An entity of type Location can be a Point, Line, Path, Polygon, or Volume. A point has a x and y (and optional z) coordinate. If no z coordinate is specified, sea level is assumed. A line comprises exactly two points. A path is two or more continuous lines. A polygon is the area enclosed by three or more points. A volume is the area enclosed by four or more polygons where each edge is shared by exactly two polygons. Length can be derived from a given Line, area from a given Polygon, and volume from a given Volume.",
+                    "@language": "en"
+                },
+                {
+                    "@value": "EDIT",
+                    "@language": "en"
+                }
+            ],
+            "rdfs:label": {
+                "@value": "Location",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "aia:Measure",
+            "@type": "owl:Class",
+            "rdfs:subClassOf": {
+                "@id": "aia:Activity"
+            },
+            "rdfs:comment": {
+                "@value": "The activity of ascertaining the value of a parameter defining a state.",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "aia:MeasurementInstrument",
+            "@type": "owl:Class",
+            "rdfs:subClassOf": {
+                "@id": "aia:Instrument"
+            }
+        },
+        {
+            "@id": "aia:NaturalPerson",
+            "@type": "owl:Class",
+            "owl:equivalentClass": {
+                "@id": "http://www.wikidata.org/wiki/Q154954"
+            }
+        },
+        {
+            "@id": "aia:Operator",
+            "@type": "owl:Class",
+            "rdfs:subClassOf": {
+                "@id": "aia:Role"
+            },
+            "owl:equivalentClass": {
+                "@type": "owl:Restriction",
+                "owl:onProperty": {
+                    "@id": "aia:operates"
+                },
+                "owl:someValuesFrom": {
+                    "@id": "aia:Instrument"
+                }
+            },
+            "rdfs:comment": {
+                "@value": "NOT FINAL \"[A] person who operates equipment or a machine.\" (OED, Google)",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "aia:Output",
+            "@type": "owl:Class",
+            "rdfs:comment": {
+                "@value": "NOT FINAL \"[R]esult of a process.\" (ISO 9000:2015(E))",
+                "@language": "en"
+            },
+            "rdfs:label": {
+                "@value": "Output",
+                "@language": "en"
+            },
+            "skos:altLabel": "Result"
+        },
+        {
+            "@id": "aia:Owner",
+            "@type": "owl:Class",
+            "owl:equivalentClass": {
+                "@type": "owl:Restriction",
+                "owl:onProperty": {
+                    "@id": "aia:owns"
+                },
+                "owl:someValuesFrom": {
+                    "@id": "owl:Thing"
+                }
+            },
+            "rdfs:subClassOf": {
+                "@id": "aia:Role"
+            },
+            "rdfs:comment": {
+                "@value": "NOT FINAL An agent who owns a thing.",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "aia:Parameter",
+            "@type": "owl:Class",
+            "rdfs:comment": {
+                "@value": "NOT FINAL A numerical or other measurable quality or feature forming one of a set that defines a thing or sets the conditions of its existence or operation.",
+                "@language": "en"
+            },
+            "skos:altLabel": "Attribute"
+        },
+        {
+            "@id": "aia:Path",
+            "@type": "owl:Class",
+            "rdfs:subClassOf": {
+                "@id": "aia:Location"
+            }
+        },
+        {
+            "@id": "aia:Period",
+            "@type": "owl:Class",
+            "owl:equivalentClass": {
+                "@id": "http://purl.org/dc/terms/PeriodOfTime"
+            },
+            "rdfs:comment": [
+                {
+                    "@value": "Activity, Project, and Event are in the domain of hasPeriod; the range is Period. Period, in turn, is in the domain of the startedAtTime, endedAtTime, and hasDuration predicates.",
+                    "@language": "en"
+                },
+                {
+                    "@value": "EDIT",
+                    "@language": "en"
+                }
+            ],
+            "rdfs:label": {
+                "@value": "Period",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "aia:Point",
+            "@type": "owl:Class",
+            "rdfs:subClassOf": {
+                "@id": "aia:Location"
+            }
+        },
+        {
+            "@id": "aia:Polygon",
+            "@type": "owl:Class",
+            "rdfs:subClassOf": {
+                "@id": "aia:Location"
+            }
+        },
+        {
+            "@id": "aia:PressureIPP",
+            "@type": "owl:Class",
+            "rdfs:subClassOf": {
+                "@id": "aia:IPP"
+            }
+        },
+        {
+            "@id": "aia:ProjectPeriod",
+            "@type": "owl:Class",
+            "rdfs:subClassOf": {
+                "@id": "aia:Period"
+            }
+        },
+        {
+            "@id": "aia:Reputation",
+            "@type": "owl:Class",
+            "rdfs:comment": [
+                {
+                    "@value": "FIX: Define a Credentials Class",
+                    "@language": "en"
+                },
+                {
+                    "@value": "NOT FINAL \"[T]he beliefs or opinions that are generally held about someone or something.\" (OED,Google)",
+                    "@language": "en"
+                }
+            ],
+            "rdfs:label": {
+                "@value": "Reputation",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "aia:Resource",
+            "@type": "owl:Class",
+            "rdfs:comment": {
+                "@value": "NOT FINAL \"[A] stock or supply of money, materials, staff, and other assets that can be drawn on by a person or organization in order to function effectively.\" (OED, Google)",
+                "@language": "en"
+            },
+            "rdfs:label": {
+                "@value": "Resource",
+                "@language": "en"
+            },
+            "skos:narrower": [
+                {
+                    "@id": "http://purl.org/dc/dcmitype/InteractiveResource"
+                },
+                {
+                    "@id": "http://purl.org/dc/terms/PhysicalResource"
+                }
+            ]
+        },
+        {
+            "@id": "aia:Role",
+            "@type": "owl:Class",
+            "owl:equivalentClass": {
+                "@id": "prov:Role"
+            },
+            "rdfs:comment": [
+                {
+                    "@value": "FIX: subClassOf Agent?",
+                    "@language": "en"
+                },
+                {
+                    "@value": "NOT FINAL \"[T]he function assumed or part played by a person or thing in a particular situation.\" (OED, Google)",
+                    "@language": "en"
+                }
+            ],
+            "rdfs:label": {
+                "@value": "Role",
+                "@language": "en"
+            },
+            "rdfs:seeAlso": {
+                "@id": "http://www.ebi.ac.uk/chebi/chebiOntology.do?chebiId=CHEBI:50906"
+            }
+        },
+        {
+            "@id": "aia:State",
+            "@type": "owl:Class",
+            "rdfs:comment": [
+                {
+                    "@value": "NOT FINAL A State is the value of a parameter P at time t.",
+                    "@language": "en"
+                },
+                {
+                    "@value": "The State of an Environment comprises the collection of the States (i.e. the values) of that Environment'\''s defining parameters.",
+                    "@language": "en"
+                }
+            ],
+            "rdfs:label": {
+                "@value": "State",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "aia:StateDiff",
+            "@type": "owl:Class",
+            "rdfs:label": {
+                "@value": "Difference in State",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "aia:StateIPP",
+            "@type": "owl:Class",
+            "rdfs:subClassOf": {
+                "@id": "aia:IPP"
+            }
+        },
+        {
+            "@id": "aia:Variable",
+            "@type": "owl:Class"
+        },
+        {
+            "@id": "aia:Verifier",
+            "@type": "owl:Class",
+            "owl:equivalentClass": {
+                "@type": "owl:Restriction",
+                "owl:onProperty": {
+                    "@id": "aia:isVerifierOf"
+                },
+                "owl:someValuesFrom": {
+                    "@id": "aia:Claim"
+                }
+            },
+            "rdfs:subClassOf": {
+                "@id": "aia:Role"
+            },
+            "rdfs:comment": {
+                "@value": "FIX: more complex and complete Controls for Agents to fulfill certain Roles to be added",
+                "@language": "en"
+            }
+        },
+        {
+            "@id": "aia:Volume",
+            "@type": "owl:Class",
+            "rdfs:subClassOf": {
+                "@id": "aia:Location"
+            }
+        },
+        {
+            "@id": "owl:Thing",
+            "@type": "owl:Class",
+            "owl:equivalentClass": {
+                "@id": "prov:Entity"
+            },
+            "rdfs:comment": "\"Anything perceivable or conceivable.\" (\"object\" - ISO 9000:2015(E))\n\n\"An entity is a physical, digital, conceptual, or other kind of thing with some fixed aspects; entities may be real or imaginary.\" (https://www.w3.org/ns/prov#Entity)",
+            "skos:altLabel": [
+                "Entity",
+                "Item",
+                "Object"
+            ]
+        },
+
+
+
+        
+        
+        
+        {
+            "@id": "aia:GPS",
+            "@type": [
+                "owl:NamedIndividual",
+                "aia:CRS"
+            ],
+            "rdfs:comment": {
+                "@value": "This is but one example of a CRS (Coordinate Reference System) - there are many more that may be defined in implementation",
+                "@language": "en"
+            }
+        },
+
+
+
+        
+        
+        
+        {
+            "@id": "_:bnode1",
+            "@type": "owl:Axiom",
+            "owl:annotatedSource": {
+                "@type": "owl:Class",
+                "owl:intersectionOf": [
+                    "aia:Claim",
+                    {
+                        "@type": "owl:Restriction",
+                        "owl:onProperty": "aia:regardsVeracity",
+                        "owl:someValuesFrom": "aia:Claim"
+                    }
+                ]
+            },
+            "owl:annotatedProperty": "owl:equivalentClass",
+            "owl:annotatedTarget": {
+                "@type": "owl:Restriction",
+                "owl:onProperty": "aia:verifies",
+                "owl:someValuesFrom": "aia:Claim"
+            },
+            "rdfs:comment": "(Auditor makesClaim Claim1) ^ (Claim1 regardsVeracity Claim2) iff (Auditor verifies Claim2); i.e. if the statements on the left/right are true, those on the right/left are as well."
+        },
+        {
+            "@id": "_:bnode1",
+            "@type": "owl:Axiom",
+            "owl:annotatedSource": {
+                "@type": "owl:Restriction",
+                "owl:onProperty": "aia:hasDuration",
+                "owl:someValuesFrom": "time:Duration",
+                "rdfs:subClassOf": {
+                    "owl:intersectionOf": [
+                        {
+                            "@type": "owl:Restriction",
+                            "owl:onProperty": "prov:endedAtTime",
+                            "owl:someValuesFrom": "xsd:dateTime"
+                        },
+                        {
+                            "@type": "owl:Restriction",
+                            "owl:onProperty": "prov:startedAtTime",
+                            "owl:someValuesFrom": "xsd:dateTime"
+                        }
+                    ],
+                    "@type": "owl:Class"
+                }
+            },
+            "owl:annotatedProperty": "rdfs:subClassOf",
+            "owl:annotatedTarget": {
+                "owl:intersectionOf": [
+                    {
+                        "@type": "owl:Restriction",
+                        "owl:onProperty": "prov:endedAtTime",
+                        "owl:someValuesFrom": "xsd:dateTime"
+                    },
+                    {
+                        "@type": "owl:Restriction",
+                        "owl:onProperty": "prov:startedAtTime",
+                        "owl:someValuesFrom": "xsd:dateTime"
+                    }
+                ],
+                "@type": "owl:Class"
+            },
+            "rdfs:comment": "The class of all things that have a duration is a subclass of the set of all things that have a start as well as end time. In other words, everything which has a duration must have started at some time and ended at some time."
+        },
+        {
+            "@id": "_:bnode2",
+            "@type": "owl:Axiom",
+            "owl:annotatedSource": {
+                "@type": "owl:Restriction",
+                "owl:onProperty": "aia:isStateDiffFrom",
+                "owl:someValuesFrom": "aia:State",
+                "rdfs:subClassOf": {
+                    "@id": "aia:StateDiff"
+                }
+            },
+            "owl:annotatedProperty": "rdfs:subClassOf",
+            "owl:annotatedTarget": "aia:StateDiff",
+            "rdfs:comment": "Two different States of the same Environment (asserted by using isStateDiffFrom) is an StateDiff entity."
+        },
+        {
+            "@id": "_:bnode3",
+            "@type": "owl:Axiom",
+            "owl:annotatedSource": {
+                "@type": "owl:Restriction",
+                "owl:onProperty": "aia:hasCRS",
+                "owl:hasValue": "aia:GPS",
+                "rdfs:subClassOf": {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "aia:hasType",
+                    "owl:someValuesFrom": "aia:Point"
+                }
+            },
+            "owl:annotatedProperty": "rdfs:subClassOf",
+            "owl:annotatedTarget": {
+                "@type": "owl:Restriction",
+                "owl:onProperty": "aia:hasType",
+                "owl:someValuesFrom": "aia:Point"
+            },
+            "rdfs:comment": "This is just an example of a specific CRS corresponding to a specific Location Type (Point, Line, Path, Polygon, Volume). Many more may be added."
+        }
+    ]
+}'
