@@ -9,15 +9,17 @@ This document serves as an all in one guide to continue/get started with or repl
 -  Ensure you have **Docker** installed.
 -  Open a Command Line Interface(CLI) such as Command Prompt (Windows) or Terminal (Mac)
 -  Adjust and run the following command:
-- **docker run --name fluree_server3 -p 58090:8090 fluree/server**
+- **docker run -d -p 58090:8090 --name fluree_server3 fluree/server**
+    -  The “-d” command is used to run the docker container in the background ("detached mode") so that the terminal window can still be used to send more prompts.
     -  The “-p” command specifies the port the server will use locally.
-    -  The text following “–name” is the name of the Docker container pulled from the Fluree server image. This can be changed depending on the user’ preference.
-    -  Docker will automatically pull the fluree/server and run it if it is not found on
+    -  The text following “–name” is the name of the Docker container pulled from the Fluree server image. This can be changed depending on the user’ preference. If not specified, docker will automatically assign a unique name to the container.
+    -  Docker will automatically pull the latest version of the fluree/server image and run it if it is not found on your local device.
+    -  In your CLI you can type **docker ps** which should show the running fluree/server container.
+    - You can now send HTTP requests to the local URL which has been created using port 58090, or another port depending on which one you specified. To view the HTTP API endpoint page visit https://localhost:58090.
+    - To stop the container from running use the command **docker stop** followed by either the "--name" specified in the "run" command above or the container ID which can be found by running the “docker ps” command. Alternatively the Docker Desktop interface can be used to run/stop containers or manually pull images from Docker Hub.
 
-        your local device.
-    -  In your CLI you can type **“docker ps”** this should show the running server.
-    - You can now send HTTP requests to the local URL which has been created using port 58090, or another port depending on which one you specified.
-
+[A useful intro video on Docker can be found [here](https://www.youtube.com/watch?v=pg19Z8LL06w)]
+      
 ## Using Postman to Conduct HTTP Requests
 ![Postman Icon](https://blog.postman.com/wp-content/uploads/2014/07/logo.png)
 
@@ -89,3 +91,6 @@ It is certainly possible to convert Postman's requests to other formats such as 
 ![Postman_export](https://github.com/aartum/FlureeImplementationAIAO/assets/143713572/3f4706e4-b594-4bba-a309-13a18b00139f)
 
 - Simply copy and paste the converted request where needed.
+
+## The AIA ontology in Postman
+The aia ontology cookbook can be found [here](https://documenter.getpostman.com/view/36457813/2sA3dyiBBW).
