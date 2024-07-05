@@ -30,7 +30,7 @@ The aia ontology cookbook can be found [here](https://documenter.getpostman.com/
 
 Note: Before starting with Postman ensure you have a Fluree server up and running. 
 
-I recommend going through Fluree's cookbook example and Forking their Postman collection, the cookbook can be found [here](https://next.developers.flur.ee/docs/reference/cookbook/). Click the orange "Run in Postman" button, or alternatively you can fork the collection   [here](https://app.getpostman.com/run-collection/27883365-fd224642-1872-4dae-a831-d28b674669f0?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D27883365-fd224642-1872-4dae-a831-d28b674669f0%26entityType%3Dcollection%26workspaceId%3Deed3ac8f-f457-4b1c-ac9f-07267b33ddd9).
+I recommend going through Fluree's cookbook example and Forking their Postman collection, the cookbook can be found [here](https://next.developers.flur.ee/docs/reference/cookbook/). Click the orange "Run in Postman" button, or alternatively you can fork the collection   [here](https://www.svgrepo.com/show/354201/postman.svg).
 
 ### Creating a Fluree Ledger using Postman
 - Create a Collection in Postman
