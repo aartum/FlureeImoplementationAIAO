@@ -13,7 +13,6 @@ This document serves as an all-in-one guide to continue/get started with or repl
 <pre>
 <code id="docker-command">docker run -d -p 58090:8090 --name fluree_server3 fluree/server</code>
 </pre>
-<button onclick="copyToClipboard()">Copy</button>
 
 
 - The “-d” command is used to run the docker container in the background ("detached mode") so that the terminal window can still be used to send more prompts.
@@ -23,9 +22,11 @@ This document serves as an all-in-one guide to continue/get started with or repl
 - In your CLI, you can type **docker ps** which should show the running fluree/server container.
 - You can now send HTTP requests to the local URL which has been created using port 58090, or another port depending on which one you specified. To view the HTTP API endpoint page, visit [https://localhost:58090](https://localhost:58090).
 - To stop the container from running, use the command **docker stop** followed by either the "--name" specified in the "run" command above or the container ID, which can be found by running the “docker ps” command. Alternatively, the Docker Desktop interface can be used to run/stop containers or manually pull images from Docker Hub.
+
 <pre>
 <code id="docker-command">docker ps</code>
 </pre>
+
 [A useful intro video on Docker can be found [here](https://www.youtube.com/watch?v=pg19Z8LL06w)]
 
 ## The AIA ontology in Postman
@@ -52,7 +53,8 @@ I recommend going through Fluree's cookbook example and Forking their Postman co
 
 ### How a simple transaction might look like (Postman + JSON-LD):
 
-![json_ex](https://github.com/aartum/FlureeImplementationAIAO/assets/143713572/e4a8febe-3ca8-4164-83c0-9a6f44cf0d12)
+![insert](https://github.com/aartum/FlureeImplementationAIAO/assets/143713572/64ee4710-77ab-457e-b45c-5169ebd04223)
+
 
 ### Break Down:
 
