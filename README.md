@@ -13,6 +13,17 @@ This document serves as an all-in-one guide to continue/get started with or repl
 <pre>
 <code id="docker-command">docker run -d -p 58090:8090 --name fluree_server3 fluree/server</code>
 </pre>
+Note the "docker run" command given above does not store any changes made to the container itself or the data it contains. This means if we were to run the container and create a fluree ledger and transact data to this ledger, once the container is stopped (either with the "docker stop" command given above or by accident) the ledger and the data it contains will be lost.  When the container is run again in the future all of the transactions will need to be performed again to add the data.  
+
+-   This is useful when new transactions are tested and one does not want each transaction to make permanent changes to a ledger. Once you are done testing the transactions you simply stop the docker container and don't have to worry about manually cleaning up/deleting files on your local computer.  
+
+-   However, the following command allows you to mount a local directory to /opt/fluree-server/data inside the container so that the data that Fluree writes to disk can be persisted locally, allowing your data state to be persistent beyond the lifetime of the container itself. 
+
+
+<pre>
+<code id="docker-command">docker run -p 58090:8090 -v `pwd`/data:/opt/fluree-server/data fluree/server</code>
+</pre>
+
 
 
 - The “-d” command is used to run the docker container in the background ("detached mode") so that the terminal window can still be used to send more prompts.
