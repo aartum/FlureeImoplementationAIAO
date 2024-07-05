@@ -51,6 +51,27 @@ I recommend going through Fluree's cookbook example and Forking their Postman co
 - After typing the body you can simply hit the send button.
 
 ### How a simple transaction might look like (Postman + JSON-LD):
+<pre>
+<code id="docker-command">{
+    "@context": {
+        "ex": "http://example.org/",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#"
+    },
+    "ledger": "ex_ontology",
+    "insert": [
+        {
+            "@id": "Bob",
+	     “@ex:name”: “Bob”
+            "@type": "ex:Farmer",
+            "rdfs:comment": "Bob the Farmer",
+            "ex:worksWith": {"@id" : "Tom"},
+            "ex:age" : 53
+        }
+    ]
+}
+</code>
+</pre>
+<button onclick="copyToClipboard()">Copy</button>
 
 ![json_ex](https://github.com/aartum/FlureeImplementationAIAO/assets/143713572/e4a8febe-3ca8-4164-83c0-9a6f44cf0d12)
 
