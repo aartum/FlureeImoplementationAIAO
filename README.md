@@ -6,17 +6,37 @@ This document serves as an all-in-one guide to continue/get started with or repl
 ![Docker Icon](https://www.docker.com/wp-content/uploads/2023/08/logo-guide-logos-1.svg)
 
 ### To create a Fluree Server image from Docker:
--  Ensure you have **Docker** installed.
--  Open a Command Line Interface(CLI) such as Command Prompt (Windows) or Terminal (Mac)
--  Adjust and run the following command:
-- **docker run -d -p 58090:8090 --name fluree_server3 fluree/server**
-    -  The “-d” command is used to run the docker container in the background ("detached mode") so that the terminal window can still be used to send more prompts.
-    -  The “-p” command specifies the port the server will use locally.
-    -  The text following “–name” is the name of the Docker container pulled from the Fluree server image. This can be changed depending on the user’ preference. If not specified, docker will automatically assign a unique name to the container.
-    -  Docker will automatically pull the latest version of the fluree/server image and run it if it is not found on your local device.
-    -  In your CLI you can type **docker ps** which should show the running fluree/server container.
-    - You can now send HTTP requests to the local URL which has been created using port 58090, or another port depending on which one you specified. To view the HTTP API endpoint page visit https://localhost:58090.
-    - To stop the container from running use the command **docker stop** followed by either the "--name" specified in the "run" command above or the container ID which can be found by running the “docker ps” command. Alternatively, the Docker Desktop interface can be used to run/stop containers or manually pull images from Docker Hub.
+- Ensure you have **Docker** installed.
+- Open a Command Line Interface (CLI) such as Command Prompt (Windows) or Terminal (Mac).
+- Adjust and run the following command:
+
+<pre>
+<code id="docker-command">docker run -d -p 58090:8090 --name fluree_server3 fluree/server</code>
+</pre>
+Note the "docker run" command given above does not store any changes made to the container itself or the data it contains. This means if we were to run the container and create a fluree ledger and transact data to this ledger, once the container is stopped (either with the "docker stop" command given above or by accident) the ledger and the data it contains will be lost.  When the container is run again in the future all of the transactions will need to be performed again to add the data.  
+
+-   This is useful when new transactions are tested and one does not want each transaction to make permanent changes to a ledger. Once you are done testing the transactions you simply stop the docker container and don't have to worry about manually cleaning up/deleting files on your local computer.  
+
+-   However, the following command allows you to mount a local directory to /opt/fluree-server/data inside the container so that the data that Fluree writes to disk can be persisted locally, allowing your data state to be persistent beyond the lifetime of the container itself. 
+
+
+<pre>
+<code id="docker-command">docker run -p 58090:8090 -v `pwd`/data:/opt/fluree-server/data fluree/server</code>
+</pre>
+
+
+
+- The “-d” command is used to run the docker container in the background ("detached mode") so that the terminal window can still be used to send more prompts.
+- The “-p” command specifies the port the server will use locally.
+- The text following “–name” is the name of the Docker container pulled from the Fluree server image. This can be changed depending on the user’s preference. If not specified, Docker will automatically assign a unique name to the container.
+- Docker will automatically pull the latest version of the fluree/server image and run it if it is not found on your local device.
+- In your CLI, you can type **docker ps** which should show the running fluree/server container.
+- You can now send HTTP requests to the local URL which has been created using port 58090, or another port depending on which one you specified. To view the HTTP API endpoint page, visit [https://localhost:58090](https://localhost:58090).
+- To stop the container from running, use the command **docker stop** followed by either the "--name" specified in the "run" command above or the container ID, which can be found by running the “docker ps” command. Alternatively, the Docker Desktop interface can be used to run/stop containers or manually pull images from Docker Hub.
+
+<pre>
+<code id="docker-command">docker ps</code>
+</pre>
 
 [A useful intro video on Docker can be found [here](https://www.youtube.com/watch?v=pg19Z8LL06w)]
 
@@ -44,7 +64,8 @@ I recommend going through Fluree's cookbook example and Forking their Postman co
 
 ### How a simple transaction might look like (Postman + JSON-LD):
 
-![json_ex](https://github.com/aartum/FlureeImplementationAIAO/assets/143713572/e4a8febe-3ca8-4164-83c0-9a6f44cf0d12)
+![insert](https://github.com/aartum/FlureeImplementationAIAO/assets/143713572/64ee4710-77ab-457e-b45c-5169ebd04223)
+
 
 ### Break Down:
 
