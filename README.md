@@ -5,15 +5,16 @@ This document serves as an all-in-one guide to continue/get started with or repl
 
 ### Contents
 
- 1. [Fluree Server Image with Docker](#docker-img)
+ 1. [Running the Fluree Server Image with Docker](#docker-img)
  2. [Using Postman to Conduct HTTP Requests](#postman)
     2.1 [Creating a Fluree Ledger using Postman](#postman-create)
-    2.2 [The AIA ontology in Postman](#aiao-postman)
+    2.2 [aia-o in Postman](#aiao-postman)
     2.3 [Example transaction + fluree transaction syntax](#example)
     2.4 [Exporting a Postman transaction](#export)
  3. [RDF in JSON-LD](#rdf-jsonld)
     3.1 [Properties](#props)
     3.2 [Classes and subclasses](#class)
+ 4. [Integrating updates to aia-o](#updates)
 
 
 ## 1. Fluree Server Image from Docker: {#docker-img}
@@ -35,7 +36,7 @@ This document serves as an all-in-one guide to continue/get started with or repl
   <p style="display: flex; align-items: center;">
     <span style="font-size: 20px; margin-right: 10px;">💡</span>
     <span>NOTE:
-    The  <tt>docker run</tt>  command given above does not store any changes made to the container itself or the data it contains. This means if we were to run the container and create a fluree ledger and transact data to this ledger, once the container is stopped (either with the  <tt>docker stop</tt>  command or by accident) the ledger and the data it contains will be lost.  When the container is run again in the future all of the transactions will need to be performed again to add the data.  This is useful when new transactions are tested and one does not want each transaction to make permanent changes to a ledger. Once you are done testing the transactions you simply stop the docker container and don't have to worry about manually cleaning up/deleting files on your local computer.
+    The  <tt>docker run</tt>  command given above does not store any changes made to the container itself or the data it contains. This means if we were to run the container and create a Fluree ledger and transact data to this ledger, once the container is stopped (either with the  <tt>docker stop</tt>  command or by accident) the ledger and the data it contains will be lost.  When the container is run again in the future all of the transactions will need to be performed again to add the data.  This is useful when new transactions are tested and one does not want each transaction to make permanent changes to a ledger. Once you are done testing the transactions you simply stop the docker container and don't have to worry about manually cleaning up/deleting files on your local computer.
     </span>
   </p>
 </div>
@@ -87,7 +88,7 @@ I recommend going through Fluree's cookbook example and Forking their Postman co
   <p style="display: flex; align-items: center;">
     <span style="font-size: 20px; margin-right: 10px;">💡</span>
     <span>NOTE:
-    There are 3 different types of URLs when interacting with the fluree server. This is an example of the URLs, although the port might look different depending on how you assigned it:
+    There are 3 different types of URLs when interacting with the Fluree server. This is an example of the URLs, although the port might look different depending on how you assigned it:
         <ol>
             <li>If this is your first request and you do not have an existing Fluree Ledger: <a href="http://localhost:58090/fluree/create">http://localhost:58090/fluree/create</a></li>
             <li>If you wish to conduct insert, update or delete transactions to your existing ledger: <a href="http://localhost:58090/fluree/transact">http://localhost:58090/fluree/transact</a></li>
@@ -100,10 +101,10 @@ I recommend going through Fluree's cookbook example and Forking their Postman co
 3.  After using the ```/fluree/create/``` URL you can now type the the body of the HTTP request in JSON-LD format. For more examples of RDF syntax in JSON-LD, see [this](#rdf-jsonld) section
 4.  After typing the body you can simply hit the ```Send``` button.
 
-## 2.2 The AIA ontology in Postman {#aiao-postman}
-I highly recommend going through the aia "cookbook". It is a thorough and complete overview of how to use Fluree and Postman together and also provides all the needed transactions to add the aia ontology to a Fluree Ledger. The cookbook also provides curl transactions for users who are using the terminal.
+## 2.2 aia-o in Postman {#aiao-postman}
+I highly recommend going through the aia-o "cookbook". It is a thorough and complete overview of how to use Fluree and Postman together and also provides all the needed transactions to add aia-o to a Fluree Ledger. The cookbook also provides curl transactions for users who are using the terminal.
 
-The aia ontology cookbook can be found [here](https://documenter.getpostman.com/view/36457813/2sA3dyiBBW).
+The aia-o cookbook can be found [here](https://documenter.getpostman.com/view/36457813/2sA3dyiBBW).
 
 ### 2.3 Example: a simple aia-o transaction (Postman + JSON-LD): {#example}
 
@@ -174,4 +175,11 @@ It is possible to convert Postman's requests to other formats such as curl, R (u
 
 - We can simply now add "South-Africa" as an entity which is of type "ex:Country" and then by the rules we provided is a subclass of "ex:Location".
 
+## Integrating updates to aia-o {#updates}
 
+The following section details a workflow for continuously integrating conceptual changes made to aia-o with the version in the Fluree ledger. In the future, these steps may be incorporated into a CI workflow with GitHub Actions, triggered by an update to ```aia.owl``` in [this](https://github.com/aartum/CA2-SIG-StandardsWG/tree/clean-up-structure/Schemas/OWL) repo.
+
+ 1. Edit the ontology file in Protégé
+ 2. Export in Turtle format (```.ttl```)
+ 3. Use ```/code/ttl_jsonld.py``` to convert the file to JSON-LD format. This code provides functionality for including prefixes (```@context```), which is much neater than the result when directly exporting to JSON-LD from Protégé
+ 4.
