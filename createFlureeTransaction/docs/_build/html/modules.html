@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Modules &#8212; Generate Fluree request body 0.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
+    <script src="_static/documentation_options.js?v=01f34227"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Getting started" href="get-started.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="modules">
+<span id="id1"></span><h1>Modules<a class="headerlink" href="#modules" title="Link to this heading">¶</a></h1>
+<section id="module-get_context">
+<span id="get-context"></span><h2>get_context<a class="headerlink" href="#module-get_context" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="get_context.extract_prefixes">
+<span class="sig-prename descclassname"><span class="pre">get_context.</span></span><span class="sig-name descname"><span class="pre">extract_prefixes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_prefix</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#get_context.extract_prefixes" title="Link to this definition">¶</a></dt>
+<dd><p>Extracts prefixes from a .ttl file and constructs a dictionary representing
+the “&#64;context” from those prefixes.</p>
+<p>This dictionary is used in JSON-LD to prevent the use of verbose URIs.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>file_path (str): The path to the .ttl file from which prefixes are extracted.
+base_prefix (str): The “default” prefix, corresponding to a blank prefix (:) in the .ttl file</p>
+</dd>
+<dt>Returns:</dt><dd><p>dict: A dictionary where keys are prefixes (strings) and values are URIs (strings).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="get_context.main">
+<span class="sig-prename descclassname"><span class="pre">get_context.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#get_context.main" title="Link to this definition">¶</a></dt>
+<dd><p>Main function to execute the extraction and printing of prefixes from a .ttl file.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="get_context.print_dict">
+<span class="sig-prename descclassname"><span class="pre">get_context.</span></span><span class="sig-name descname"><span class="pre">print_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prefix_dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#get_context.print_dict" title="Link to this definition">¶</a></dt>
+<dd><p>Prints the contents of the provided dictionary in the format “&lt;key&gt;: &lt;value&gt;”.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>prefix_dict (dict): The dictionary to print.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-request_body">
+<span id="request-body"></span><h2>request_body<a class="headerlink" href="#module-request_body" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="request_body.create_output_json">
+<span class="sig-prename descclassname"><span class="pre">request_body.</span></span><span class="sig-name descname"><span class="pre">create_output_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ledger</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_file_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#request_body.create_output_json" title="Link to this definition">¶</a></dt>
+<dd><p>Creates a structured JSON output file to be used as the request body for a transaction into a Fluree ledger.</p>
+<p>&#64;param context: Dictionary containing the “&#64;context”.
+&#64;param ledger: Name of the Fluree ledger.
+&#64;param graph: List containing the “&#64;graph”.
+&#64;param output_file_path: Path to the output JSON file.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="request_body.extract_context_and_graph">
+<span class="sig-prename descclassname"><span class="pre">request_body.</span></span><span class="sig-name descname"><span class="pre">extract_context_and_graph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">jsonld_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#request_body.extract_context_and_graph" title="Link to this definition">¶</a></dt>
+<dd><p>Extracts the “&#64;context” and “&#64;graph” from JSON-LD data.</p>
+<p>&#64;param jsonld_data: JSON-LD data in string format.
+&#64;return: Tuple containing context dictionary and graph list.
+&#64;throws ValueError: If “&#64;context” or “&#64;graph” is missing in JSON-LD data.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="request_body.main">
+<span class="sig-prename descclassname"><span class="pre">request_body.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#request_body.main" title="Link to this definition">¶</a></dt>
+<dd><p>Main function to execute the JSON-LD to JSON conversion.
+Reads command-line arguments for input JSON-LD file, ledger name, and output JSON file path.</p>
+</dd></dl>
+
+</section>
+<section id="module-ttl_jsonld">
+<span id="ttl-jsonld"></span><h2>ttl_jsonld<a class="headerlink" href="#module-ttl_jsonld" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="ttl_jsonld.ttl_to_jsonld">
+<span class="sig-prename descclassname"><span class="pre">ttl_jsonld.</span></span><span class="sig-name descname"><span class="pre">ttl_to_jsonld</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ttl_jsonld.ttl_to_jsonld" title="Link to this definition">¶</a></dt>
+<dd><p>Converts a Turtle (.ttl) file to JSON-LD format using the provided context.</p>
+<p>&#64;param input_name: Name of the input Turtle file.
+&#64;param context: Context dictionary used for JSON-LD serialization.
+&#64;return: JSON-LD serialized data.</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Generate Fluree request body</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="get-started.html">Getting started</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-get_context">get_context</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-request_body">request_body</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-ttl_jsonld">ttl_jsonld</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="get-started.html" title="previous chapter">Getting started</a></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, Lucia Pauw.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="_sources/modules.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
