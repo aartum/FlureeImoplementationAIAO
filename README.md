@@ -9,20 +9,23 @@ This document serves as an all-in-one guide to continue/get started with or repl
  2. [Using Postman to Conduct HTTP Requests](#postman)
 
     2.1 [Creating a Fluree Ledger using Postman](#postman-create)
+    
     2.2 [aia-o in Postman](#aiao-postman)
 
-      2.2.1 [Automatically creating the request body](#create-body)
+    - 2.2.1 [Automatically creating the request body](#create-body)
 
     2.3 [Example transaction + fluree transaction syntax](#example)
+    
     2.4 [Exporting a Postman transaction](#export)
 
- 3. [RDF in JSON-LD](#rdf-jsonld)
+ 4. [RDF in JSON-LD](#rdf-jsonld)
+
     3.1 [Properties](#props)
+    
     3.2 [Classes and subclasses](#class)
- 4. [Integrating updates to aia-o](#updates)
-
-
-## 1. Fluree Server Image from Docker: {#docker-img}
+    
+<a name="docker-img"></a>
+## 1. Fluree Server Image from Docker:
 
 <p align="center">
     <img src="https://www.docker.com/wp-content/uploads/2023/08/logo-guide-logos-1.svg" />
@@ -68,7 +71,8 @@ The following command allows you to mount a local directory to ```/opt/fluree-se
 
 A useful intro video on Docker can be found [here](https://www.youtube.com/watch?v=pg19Z8LL06w)
 
-## 2. Using Postman to Conduct HTTP Requests {#postman}
+<a name="postman"></a>
+## 2. Using Postman to Conduct HTTP Requests
 
 Find out more about [Postman](https://www.postman.com/).
 
@@ -86,7 +90,8 @@ Find out more about [Postman](https://www.postman.com/).
 
 I recommend going through Fluree's cookbook example and Forking their Postman collection. The cookbook can be found [here](https://next.developers.flur.ee/docs/reference/cookbook/). Click the orange ```Run in Postman``` button, or alternatively you can fork the collection [here](https://www.svgrepo.com/show/354201/postman.svg).
 
-### 2.1 Creating a Fluree Ledger using Postman {#postman-create}
+<a name="postman-create"></a>
+### 2.1 Creating a Fluree Ledger using Postman
 
  1. Create a Collection in Postman
  2. In the newly added collection, add a ```Post``` request
@@ -108,14 +113,16 @@ I recommend going through Fluree's cookbook example and Forking their Postman co
 3.  After using the ```/fluree/create/``` URL you can now type the the body of the HTTP request in JSON-LD format. For more examples of RDF syntax in JSON-LD, see [this](#rdf-jsonld) section
 4.  After typing the body you can simply hit the ```Send``` button.
 
-## 2.2 aia-o in Postman {#aiao-postman}
+<a name="aiao-postman"></a>
+## 2.2 aia-o in Postman
 I highly recommend going through the aia-o "cookbook". It is a thorough and complete overview of how to use Fluree and Postman together and also provides all the needed transactions to add aia-o to a Fluree Ledger. The cookbook also provides curl transactions for users who are using the terminal.
 
 The aia-o cookbook can be found [here](https://documenter.getpostman.com/view/36457813/2sA3dyiBBW).
 
-### 2.2.1 Automatically creating the Fluree request body {#create-body}
+<a name="create-body"></a>
+### 2.2.1 Automatically creating the Fluree request body
 
-#### Integrating updates to aia-o {#updates}
+#### Integrating updates to aia-o
 
 The following section details a (preliminary) workflow for continuously integrating conceptual changes made to aia-o with the version in the Fluree ledger. In the future, these steps may be incorporated into a CI workflow with GitHub Actions, triggered by an update to ```aia.owl``` in [this](https://github.com/aartum/CA2-SIG-StandardsWG/tree/clean-up-structure/Schemas/OWL) repo.
 
@@ -136,9 +143,8 @@ The following section details a (preliminary) workflow for continuously integrat
       http://localhost:&lt;port&gt;/fluree/&lt;create/insert/etc.&gt;</code>
     </pre>
 
-
-
-## 2.3 Example: a simple aia-o transaction (Postman + JSON-LD): {#example}
+<a name="example"></a>
+## 2.3 Example: a simple aia-o transaction (Postman + JSON-LD):
 
 ![insert](https://github.com/aartum/FlureeImplementationAIAO/assets/143713572/64ee4710-77ab-457e-b45c-5169ebd04223)
 
@@ -169,8 +175,8 @@ A normal Fluree insert transaction consists of 3 parts:
 
     - We can give each entity properties for example, name, age, marital status, employment status etc., provided the ```example.org``` vocabulary has a property for age, name and worksWith, and also a class for Farmer. We can assign these properties to Bob.
 
-
-### 2.4 Exporting a Postman request {#export}
+<a name="export"></a>
+### 2.4 Exporting a Postman request
 It is possible to convert Postman's requests to other formats such as curl, R (using httr), Python, C# etc.
 
  1. Click on the request
@@ -180,8 +186,10 @@ It is possible to convert Postman's requests to other formats such as curl, R (u
 
 ![Postman_export](https://github.com/aartum/FlureeImplementationAIAO/assets/143713572/3f4706e4-b594-4bba-a309-13a18b00139f)
 
-## RDF vocabulary examples in JSON-LD: {#rdf-jsonld}
-### 3.1 RDF Properties: {#props}
+<a name="rdf-jsonld"></a>
+## RDF vocabulary examples in JSON-LD:
+<a name="props"></a>
+### 3.1 RDF Properties:
 
 ![rdf_property](https://github.com/aartum/FlureeImplementationAIAO/assets/143713572/8856a5f2-e29e-410b-90a6-14e4165b5c45)
 
@@ -189,6 +197,7 @@ It is possible to convert Postman's requests to other formats such as curl, R (u
 - Married is not called from a vocabulary and thus is used without a prefix. This also means this property only exists in the ledger.
 - Please note the "rdf" and "rdfs" prefixes in the "@context" section.
 
+<a name="class"></a>
 ### 3.2 RDF Classes and Subclasses: {#class}
 
 #### 3.2.1 RDF Classes
@@ -202,7 +211,8 @@ It is possible to convert Postman's requests to other formats such as curl, R (u
 - The snippet above assumes Country is also an entity from ```example.org``
  - We want to assign a relationship which states it is a subclass of Location in our dataset. Please take a look at how the syntax and declaration for the "rdfs" subclass work in the example above.
 
-#### 3.2.3 Inserting data using the Classes: {#data-in}
+<a name="data-in"></a>
+#### 3.2.3 Inserting data using the Classes:
 ![class_dataInsert](https://github.com/aartum/FlureeImplementationAIAO/assets/143713572/57315fd9-efdc-486f-9e37-888187678cda)
 
 - We can simply now add "South-Africa" as an entity which is of type "ex:Country" and then by the rules we provided is a subclass of "ex:Location".
