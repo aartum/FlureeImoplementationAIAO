@@ -5,15 +5,16 @@ import ttl_jsonld
 import request_body
 
 # Check if the input and output file paths are provided
-if len(sys.argv) != 4:
-    print("Usage: python main <path/to/ttlfile> <ledger name> <path/to/json/file>")
+if len(sys.argv) != 5:
+    print("Usage: python main <path/to/ttlfile> <path/to/json/file> <ledger name> <base prefix>")
     sys.exit(1)
 
 input_name = sys.argv[1]
-ledger = sys.argv[2]
-output_name = sys.argv[3]
+output_name = sys.argv[2]
+ledger = sys.argv[3]
+base_prefix = sys.argv[4]
 
-context = get_context.extract_prefixes(input_name)
+context = get_context.extract_prefixes(input_name, base_prefix)
 
 jsonld_data = ttl_jsonld.ttl_to_jsonld(input_name, context).decode("utf-8")
 

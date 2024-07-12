@@ -13,7 +13,7 @@
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Welcome to Generate Fluree request body’s documentation!" href="index.html" />
+    <link rel="prev" title="Getting started" href="get-started.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -37,12 +37,13 @@
 <span id="get-context"></span><h2>get_context<a class="headerlink" href="#module-get_context" title="Link to this heading">¶</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="get_context.extract_prefixes">
-<span class="sig-prename descclassname"><span class="pre">get_context.</span></span><span class="sig-name descname"><span class="pre">extract_prefixes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#get_context.extract_prefixes" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">get_context.</span></span><span class="sig-name descname"><span class="pre">extract_prefixes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_prefix</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#get_context.extract_prefixes" title="Link to this definition">¶</a></dt>
 <dd><p>Extracts prefixes from a .ttl file and constructs a dictionary representing
-the “&#64;context” from those prefixes. This dictionary is used in JSON-LD to
-prevent the use of verbose URIs.</p>
+the “&#64;context” from those prefixes.</p>
+<p>This dictionary is used in JSON-LD to prevent the use of verbose URIs.</p>
 <dl class="simple">
-<dt>Args:</dt><dd><p>file_path (str): The path to the .ttl file from which prefixes are extracted.</p>
+<dt>Args:</dt><dd><p>file_path (str): The path to the .ttl file from which prefixes are extracted.
+base_prefix (str): The “default” prefix, corresponding to a blank prefix (:) in the .ttl file</p>
 </dd>
 <dt>Returns:</dt><dd><p>dict: A dictionary where keys are prefixes (strings) and values are URIs (strings).</p>
 </dd>
@@ -128,6 +129,7 @@ Reads command-line arguments for input JSON-LD file, ledger name, and output JSO
 <h3>Navigation</h3>
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="get-started.html">Getting started</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Modules</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#module-get_context">get_context</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-request_body">request_body</a></li>
@@ -140,7 +142,7 @@ Reads command-line arguments for input JSON-LD file, ledger name, and output JSO
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="index.html" title="previous chapter">Welcome to Generate Fluree request body’s documentation!</a></li>
+      <li>Previous: <a href="get-started.html" title="previous chapter">Getting started</a></li>
   </ul></li>
 </ul>
 </div>

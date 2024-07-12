@@ -1,13 +1,15 @@
 import sys
 
-def extract_prefixes(file_path):
+def extract_prefixes(file_path, base_prefix):
     """
     Extracts prefixes from a .ttl file and constructs a dictionary representing
-    the "@context" from those prefixes. This dictionary is used in JSON-LD to
-    prevent the use of verbose URIs.
+    the "@context" from those prefixes.
+
+    This dictionary is used in JSON-LD to prevent the use of verbose URIs.
 
     Args:
         file_path (str): The path to the .ttl file from which prefixes are extracted.
+        base_prefix (str): The "default" prefix, corresponding to a blank prefix (:) in the .ttl file
 
     Returns:
         dict: A dictionary where keys are prefixes (strings) and values are URIs (strings).
@@ -22,7 +24,7 @@ def extract_prefixes(file_path):
                 if len(parts) == 4 and parts[0] == '@prefix':
                     prefix = parts[1][:-1]  # Remove the trailing ':'
                     if prefix == '':
-                        prefix = ':'  # Use ":" for empty prefix
+                        prefix = base_prefix  # Use ":" for empty prefix
                     uri = parts[2][1:-1]  # Remove the surrounding '<' and '>'
                     prefix_dict[prefix] = uri
 

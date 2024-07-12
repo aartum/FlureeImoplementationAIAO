@@ -34,17 +34,17 @@
             
   <section id="getting-started">
 <h1>Getting started<a class="headerlink" href="#getting-started" title="Link to this heading">¶</a></h1>
-<p>This package can be used to create a Fluree transaction body in .json format from a
-.ttl file.</p>
-<p>It extracts the prefixes from the .ttl file to create a &#64;context field and converts
-the data to JSON-LD format as required by Fluree.</p>
-<p><strong>Usage</strong></p>
-<p><code class="docutils literal notranslate"><span class="pre">main.py</span></code> takes 3 command line arguments:</p>
+<p>This package can be used to create a Fluree transaction body in <code class="docutils literal notranslate"><span class="pre">.json</span></code> format from a
+<code class="docutils literal notranslate"><span class="pre">.ttl</span></code> file.</p>
+<p>It converts the data to JSON-LD format (as required by Fluree) and extracts the prefixes from the <code class="docutils literal notranslate"><span class="pre">.ttl</span></code> file to create a <code class="docutils literal notranslate"><span class="pre">&#64;context</span></code> field.</p>
+<p><strong>Use</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">main.py</span></code> takes 4 command line arguments:</p>
 <blockquote>
 <div><ul class="simple">
 <li><p>The path to the input <code class="docutils literal notranslate"><span class="pre">.ttl</span></code> file</p></li>
-<li><p>The name of the Fluree ledger to make the transaction to</p></li>
 <li><p>The path to the output <code class="docutils literal notranslate"><span class="pre">.json</span></code> file</p></li>
+<li><p>The name of the Fluree ledger to make the transaction to</p></li>
+<li><p>The base prefix for the ontology</p></li>
 </ul>
 </div></blockquote>
 <p><strong>Creating the Fluree request</strong></p>
