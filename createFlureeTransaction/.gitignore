@@ -1,5 +1,4 @@
 Doxyfile
-docs/
 output/*
 __pycache__/
 *.pyc
