@@ -3,6 +3,8 @@ This package is used to create a Fluree transaction body in `.json` format from 
 
 It converts the data to JSON-LD format (as required by Fluree) and extracts the prefixes from the `.ttl` file to create an `@context` field.
 
+It can be used as part of a workflow that generates aia-o complaint linked data and transacts it to a Fluree ledger, or to integrate updates to the aia ontology with the existing ontology in the Fluree ledger.
+
 # Getting started
 Find the complete documentation under `docs/_build/html/index.html`
 
