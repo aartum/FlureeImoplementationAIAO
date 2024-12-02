@@ -4,9 +4,9 @@ def ttl_to_jsonld(input_name, context):
     """
     Converts a Turtle (.ttl) file to JSON-LD format using the provided context.
 
-    @param input_name: Name of the input Turtle file.
-    @param context: Context dictionary used for JSON-LD serialization.
-    @return: JSON-LD serialized data.
+    :param input_name: Name of the input Turtle file.
+    :param context: Context dictionary used for JSON-LD serialization.
+    :return: JSON-LD serialized data.
     """
     # Create a Graph
     g = Graph()
