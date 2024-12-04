@@ -7,12 +7,12 @@ def extract_prefixes(file_path, base_prefix):
 
     This dictionary is used in JSON-LD to prevent the use of verbose URIs.
 
-    Args:
-        file_path (str): The path to the .ttl file from which prefixes are extracted.
-        base_prefix (str): The "default" prefix, corresponding to a blank prefix (:) in the .ttl file
-
-    Returns:
-        dict: A dictionary where keys are prefixes (strings) and values are URIs (strings).
+    :param file_path: The path to the .ttl file from which prefixes are extracted.
+    :type file_path: str
+    :param base_prefix: The "default" prefix, corresponding to a blank prefix (:) in the .ttl file.
+    :type base_prefix: str
+    :return: A dictionary where keys are prefixes (strings) and values are URIs (strings).
+    :rtype: dict
     """
     prefix_dict = {}
 
@@ -34,8 +34,8 @@ def print_dict(prefix_dict):
     """
     Prints the contents of the provided dictionary in the format "<key>: <value>".
 
-    Args:
-        prefix_dict (dict): The dictionary to print.
+    :param prefix_dict: The dictionary to print.
+    :type prefix_dict: dict
     """
     for key, value in prefix_dict.items():
         print(f'"{key}": "{value}"')
